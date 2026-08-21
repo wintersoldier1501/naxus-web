@@ -434,12 +434,13 @@ export default function Home() {
           
           {/* Team Member 2 */}
           <div className="flex flex-col items-center text-center group">
-            <div className="w-40 h-40 tech-border bg-[#1a1d27] rounded-full mb-6 flex items-center justify-center overflow-hidden">
-              <Users className="w-12 h-12 text-[#d4d8c5]/50 group-hover:scale-110 transition-transform" />
+            <div className="w-40 h-40 tech-border bg-[#1a1d27] rounded-full mb-6 flex items-center justify-center overflow-hidden relative">
+              <img src="/roberto.png" alt="Roberto Sariñana - Asesor Tecnico" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+              <div className="absolute inset-0 border-2 border-[#d4d8c5]/10 rounded-full pointer-events-none group-hover:border-cyan-400/50 transition-colors"></div>
             </div>
-            <h4 className="text-xl font-bold">Director Creativo</h4>
-            <p className="text-[#d4d8c5] text-sm font-mono uppercase tracking-wider mb-2">Head of Design</p>
-            <span className="text-gray-400 font-light">Nombre Apellido</span>
+            <h4 className="text-xl font-bold">Asesor Tecnico</h4>
+            <p className="text-[#d4d8c5] text-sm font-mono uppercase tracking-wider mb-2">Backend</p>
+            <span className="text-gray-400 font-light">Roberto Sariñana</span>
           </div>
 
           {/* Team Member 3 */}
