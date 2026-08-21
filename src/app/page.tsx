@@ -57,7 +57,7 @@ export default function Home() {
     };
   }, [activeProject]);
   return (
-    <main className="min-h-screen bg-[#12141c] text-white selection:bg-[#d4d8c5]/30 font-sans">
+    <main className="min-h-screen bg-[#12141c] text-white selection:bg-[#d4d8c5]/30 font-sans overflow-x-hidden">
       
       {/* 1. TECH GRID BACKGROUND & HERO */}
       <div className="relative min-h-[90vh] flex flex-col">
