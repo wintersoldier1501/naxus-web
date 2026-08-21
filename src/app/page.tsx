@@ -439,7 +439,7 @@ export default function Home() {
               <div className="absolute inset-0 border-2 border-[#d4d8c5]/10 rounded-full pointer-events-none group-hover:border-cyan-400/50 transition-colors"></div>
             </div>
             <h4 className="text-xl font-bold">Asesor Tecnico</h4>
-            <p className="text-[#d4d8c5] text-sm font-mono uppercase tracking-wider mb-2">Backend</p>
+            <p className="text-[#d4d8c5] text-sm font-mono uppercase tracking-wider mb-2">Backend Engineer</p>
             <span className="text-gray-400 font-light">Roberto Sariñana</span>
           </div>
 
