@@ -84,9 +84,9 @@ export default function Home() {
         </nav>
 
         {/* CENTERED HERO SECTION */}
-        <section className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4 md:px-8 lg:px-12 max-w-7xl mx-auto w-full">
+        <section className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center px-4 md:px-8 lg:px-12 max-w-7xl mx-auto w-full pb-12 lg:pb-0">
           {/* TEXT COLUMN */}
-          <div className="flex flex-col items-start text-left pt-12 md:pt-20 lg:pt-0 w-full overflow-hidden">
+          <div className="flex flex-col items-start text-left pt-8 md:pt-12 lg:pt-0 w-full overflow-hidden">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -131,7 +131,7 @@ export default function Home() {
           </div>
 
           {/* ANIMATION COLUMN */}
-          <div className="relative w-full h-[500px] hidden lg:flex items-center justify-center">
+          <div className="relative w-full h-[350px] lg:h-[500px] flex items-center justify-center mt-4 lg:mt-0">
             {/* Glowing backdrop */}
             <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-purple-500/5 to-transparent rounded-full blur-3xl opacity-50 animate-pulse"></div>
             
@@ -140,7 +140,7 @@ export default function Home() {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0, y: [0, -15, 0] }}
               transition={{ opacity: {duration: 0.8}, x: {duration: 0.8}, y: { duration: 6, repeat: Infinity, ease: "easeInOut" } }}
-              className="absolute right-0 top-12 w-80 bg-black/60 backdrop-blur-md border border-white/10 rounded-xl overflow-hidden shadow-2xl"
+              className="absolute right-0 lg:right-0 top-4 lg:top-12 w-[85%] max-w-sm lg:w-80 bg-black/60 backdrop-blur-md border border-white/10 rounded-xl overflow-hidden shadow-2xl"
             >
               {/* Terminal Header */}
               <div className="bg-white/5 px-4 py-3 flex gap-2 border-b border-white/10">
@@ -149,12 +149,12 @@ export default function Home() {
                 <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
               </div>
               {/* Terminal Body */}
-              <div className="p-6 font-mono text-sm flex flex-col gap-4">
+              <div className="p-4 lg:p-6 font-mono text-xs md:text-sm flex flex-col gap-3 lg:gap-4">
                 <div className="flex gap-2 text-gray-400"><span className="text-cyan-400">~</span> system.init()</div>
-                <motion.div initial={{ width: "0%" }} animate={{ width: "100%" }} transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }} className="h-2 bg-cyan-400/80 rounded-full w-3/4 shadow-[0_0_8px_rgba(34,211,238,0.5)]"></motion.div>
-                <motion.div initial={{ width: "0%" }} animate={{ width: "100%" }} transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse", delay: 0.2 }} className="h-2 bg-purple-500/60 rounded-full w-1/2"></motion.div>
-                <motion.div initial={{ width: "0%" }} animate={{ width: "100%" }} transition={{ duration: 2.2, repeat: Infinity, repeatType: "reverse", delay: 0.4 }} className="h-2 bg-cyan-400/50 rounded-full w-5/6"></motion.div>
-                <div className="flex gap-2 text-gray-400 mt-2"><span className="text-emerald-400">✔</span> deploying_architecture</div>
+                <motion.div initial={{ width: "0%" }} animate={{ width: "100%" }} transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }} className="h-1.5 lg:h-2 bg-cyan-400/80 rounded-full w-3/4 shadow-[0_0_8px_rgba(34,211,238,0.5)]"></motion.div>
+                <motion.div initial={{ width: "0%" }} animate={{ width: "100%" }} transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse", delay: 0.2 }} className="h-1.5 lg:h-2 bg-purple-500/60 rounded-full w-1/2"></motion.div>
+                <motion.div initial={{ width: "0%" }} animate={{ width: "100%" }} transition={{ duration: 2.2, repeat: Infinity, repeatType: "reverse", delay: 0.4 }} className="h-1.5 lg:h-2 bg-cyan-400/50 rounded-full w-5/6"></motion.div>
+                <div className="flex gap-2 text-gray-400 mt-1 lg:mt-2"><span className="text-emerald-400">✔</span> deploying_architecture</div>
               </div>
             </motion.div>
 
@@ -163,7 +163,7 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1, y: [0, 20, 0] }}
               transition={{ opacity: {duration: 0.8, delay: 0.3}, scale: {duration: 0.8, delay: 0.3}, y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 } }}
-              className="absolute left-10 bottom-20 w-56 bg-[#12141c]/90 backdrop-blur-xl border border-white/10 rounded-xl p-6 shadow-2xl"
+              className="absolute left-0 lg:left-10 bottom-0 lg:bottom-20 w-[65%] max-w-[220px] lg:w-56 bg-[#12141c]/90 backdrop-blur-xl border border-white/10 rounded-xl p-4 lg:p-6 shadow-2xl"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 bg-emerald-500/10 rounded-lg">
