@@ -78,9 +78,9 @@ export default function Home() {
             <a href="#proyectos" className="hover:text-[#d4d8c5] transition-colors">Proyectos</a>
             <a href="#equipo" className="hover:text-[#d4d8c5] transition-colors">Equipo</a>
           </div>
-          <button className="tech-border px-4 py-2 md:px-6 md:py-2 text-[10px] md:text-xs font-bold tracking-widest text-[#d4d8c5] uppercase bg-black/50 backdrop-blur hover:bg-[#d4d8c5] hover:text-[#11131a] transition-all">
+          <a href="https://wa.me/5216183202065?text=Hola%20equipo%20Naxus%2C%20me%20interesa%20desarrollar%20un%20proyecto%20tecnol%C3%B3gico%20para%20escalar%20mi%20empresa." target="_blank" rel="noopener noreferrer" className="tech-border px-4 py-2 md:px-6 md:py-2 text-[10px] md:text-xs font-bold tracking-widest text-[#d4d8c5] uppercase bg-black/50 backdrop-blur hover:bg-[#d4d8c5] hover:text-[#11131a] transition-all">
             Contactar
-          </button>
+          </a>
         </nav>
 
         {/* CENTERED HERO SECTION */}
@@ -123,10 +123,10 @@ export default function Home() {
               transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" }}
               className="mt-8 md:mt-12 w-full sm:w-auto"
             >
-              <button className="tech-border w-full sm:w-auto relative inline-flex items-center justify-center gap-3 px-6 py-4 md:px-10 md:py-4 bg-[#d4d8c5] text-[#11131a] font-bold uppercase tracking-widest text-xs md:text-sm overflow-hidden transition-all hover:bg-white hover:shadow-[0_0_40px_-10px_rgba(212,216,197,0.8)]">
+              <a href="https://wa.me/5216183202065?text=Hola%20equipo%20Naxus%2C%20me%20interesa%20desarrollar%20un%20proyecto%20tecnol%C3%B3gico%20para%20escalar%20mi%20empresa." target="_blank" rel="noopener noreferrer" className="tech-border w-full sm:w-auto relative inline-flex items-center justify-center gap-3 px-6 py-4 md:px-10 md:py-4 bg-[#d4d8c5] text-[#11131a] font-bold uppercase tracking-widest text-xs md:text-sm overflow-hidden transition-all hover:bg-white hover:shadow-[0_0_40px_-10px_rgba(212,216,197,0.8)]">
                 <Terminal className="w-4 h-4" />
                 Hablar con un experto
-              </button>
+              </a>
             </motion.div>
           </div>
 
@@ -498,7 +498,7 @@ export default function Home() {
                 </motion.p>
               </div>
 
-              <a href="mailto:contacto@naxus.com" className="group/btn relative px-4 py-4 md:px-8 md:py-4 bg-transparent border border-cyan-500/50 text-cyan-400 font-mono uppercase tracking-widest text-[10px] sm:text-xs md:text-sm overflow-hidden transition-all hover:bg-cyan-500/10 hover:border-cyan-400">
+              <a href="https://wa.me/5216183202065?text=Hola%20equipo%20Naxus%2C%20estoy%20listo%20para%20iniciar%20un%20proyecto.%20Me%20gustar%C3%ADa%20agendar%20una%20reuni%C3%B3n." target="_blank" rel="noopener noreferrer" className="group/btn relative px-4 py-4 md:px-8 md:py-4 bg-transparent border border-cyan-500/50 text-cyan-400 font-mono uppercase tracking-widest text-[10px] sm:text-xs md:text-sm overflow-hidden transition-all hover:bg-cyan-500/10 hover:border-cyan-400">
                 <span className="relative z-10 flex items-center gap-2 md:gap-3 font-bold">
                   <Code2 className="w-4 h-4" /> [ INICIAR_PROYECTO ] <span className="w-2 h-4 bg-cyan-400 animate-pulse"></span>
                 </span>
@@ -521,9 +521,9 @@ export default function Home() {
           </p>
 
           <div className="flex gap-6">
-            <a href="mailto:contacto@naxus.com" className="text-sm font-mono text-gray-500 hover:text-[#d4d8c5] transition-colors uppercase tracking-widest">Email</a>
+            <a href="mailto:sergiolive360@gmail.com" className="text-sm font-mono text-gray-500 hover:text-[#d4d8c5] transition-colors uppercase tracking-widest">Email</a>
             <a href="#" className="text-sm font-mono text-gray-500 hover:text-[#d4d8c5] transition-colors uppercase tracking-widest">LinkedIn</a>
-            <a href="#" className="text-sm font-mono text-gray-500 hover:text-[#d4d8c5] transition-colors uppercase tracking-widest">WhatsApp</a>
+            <a href="https://wa.me/5216183202065?text=Hola%20equipo%20Naxus%2C%20me%20interesa%20desarrollar%20un%20proyecto%20tecnol%C3%B3gico." target="_blank" rel="noopener noreferrer" className="text-sm font-mono text-gray-500 hover:text-[#d4d8c5] transition-colors uppercase tracking-widest">WhatsApp</a>
           </div>
         </div>
       </footer>
