@@ -523,7 +523,7 @@ export default function Home() {
           </p>
 
           <div className="flex gap-6">
-            <a href="mailto:sergiolive360@gmail.com" className="text-sm font-mono text-gray-500 hover:text-[#d4d8c5] transition-colors uppercase tracking-widest">Email</a>
+            <a href="mailto:sergiolive360@gmail.com" className="text-sm font-mono text-gray-500 hover:text-[#d4d8c5] transition-colors uppercase tracking-widest">sergiolive360@gmail.com</a>
             <a href="#" className="text-sm font-mono text-gray-500 hover:text-[#d4d8c5] transition-colors uppercase tracking-widest">LinkedIn</a>
             <a href="https://wa.me/5216183202065?text=Hola%20equipo%20Naxus%2C%20me%20interesa%20desarrollar%20un%20proyecto%20tecnol%C3%B3gico." target="_blank" rel="noopener noreferrer" className="text-sm font-mono text-gray-500 hover:text-[#d4d8c5] transition-colors uppercase tracking-widest">WhatsApp</a>
           </div>
