@@ -87,7 +87,7 @@ export default function Home() {
         {/* CENTERED HERO SECTION */}
         <section className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center px-4 md:px-8 lg:px-12 max-w-7xl mx-auto w-full pb-12 lg:pb-0">
           {/* TEXT COLUMN */}
-          <div className="flex flex-col items-start text-left pt-8 md:pt-12 lg:pt-0 w-full overflow-hidden">
+          <div className="flex flex-col items-start text-left pt-8 md:pt-12 lg:pt-0 w-full">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -102,10 +102,10 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-              className="text-[11vw] sm:text-6xl md:text-7xl font-black mb-4 md:mb-6 tracking-tighter leading-[0.9] uppercase w-full"
+              className="text-[10vw] sm:text-6xl md:text-7xl lg:text-6xl xl:text-7xl font-black mb-4 md:mb-6 tracking-tighter leading-[0.9] uppercase w-full"
             >
-              <span className="text-white block truncate md:overflow-visible">DESARROLLAMOS</span>
-              <span className="text-[#d4d8c5]/70 block truncate md:overflow-visible">TU VISIÓN.</span>
+              <span className="text-white block">DESARROLLAMOS</span>
+              <span className="text-[#d4d8c5]/70 block">TU VISIÓN.</span>
             </motion.h1>
 
             <motion.p 
