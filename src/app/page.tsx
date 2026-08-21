@@ -617,10 +617,6 @@ export default function Home() {
                       </div>
                     </section>
                     
-                    {/* Fake Deploy Action for Aesthetics */}
-                    <button className={`w-full py-4 bg-${projectsData[activeProject].color}-500/10 hover:bg-${projectsData[activeProject].color}-500/20 text-${projectsData[activeProject].color}-400 border border-${projectsData[activeProject].color}-500/30 font-mono uppercase tracking-widest text-xs transition-colors flex items-center justify-center gap-2`}>
-                      <Server className="w-4 h-4" /> Ver Repositorio
-                    </button>
                   </div>
 
                 </div>
