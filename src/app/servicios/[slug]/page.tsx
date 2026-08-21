@@ -38,8 +38,9 @@ const servicesData = {
   }
 };
 
-export default function ServicePage({ params }: { params: { slug: string } }) {
-  const service = servicesData[params.slug as keyof typeof servicesData];
+export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const service = servicesData[resolvedParams.slug as keyof typeof servicesData];
 
   // Fallback si la URL no existe
   if (!service) {
