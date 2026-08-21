@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter);
+  --color-naxus-bg: #11131a;
+  --color-naxus-sage: #d4d8c5;
+}
+
+:root {
+  --background: #12141c;
+  --foreground: #ffffff;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Hexagon Grid Animation (Matches the Naxus Logo) */
+.hex-grid-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  perspective: 1000px;
+}
+
+.hex-grid {
+  position: absolute;
+  width: 200vw;
+  height: 200vh;
+  left: -50vw;
+  top: -20vh;
+  /* Hexagon pattern using multiple gradients */
+  background-image: 
+    radial-gradient(rgba(212, 216, 197, 0.15) 1px, transparent 1px),
+    radial-gradient(rgba(212, 216, 197, 0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  
+  transform: rotateX(60deg);
+  animation: gridMove 20s linear infinite;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 50%, transparent 100%);
+}
+
+@keyframes gridMove {
+  0% { transform: rotateX(60deg) translateY(0); }
+  100% { transform: rotateX(60deg) translateY(40px); }
+}
+
+.glow-text-naxus {
+  text-shadow: 0 0 20px rgba(212, 216, 197, 0.6);
+}
+
+.tech-border {
+  position: relative;
+  border: 1px solid rgba(212, 216, 197, 0.2);
+}
+.tech-border::before, .tech-border::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #d4d8c5;
+  transition: all 0.3s ease;
+}
+.tech-border::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.tech-border::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+.tech-border:hover::before { width: 100%; height: 100%; opacity: 0.2; }
+.tech-border:hover::after { width: 100%; height: 100%; opacity: 0.2; }
