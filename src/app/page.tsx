@@ -67,62 +67,63 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#d4d8c5]/5 rounded-[100%] blur-[100px] pointer-events-none z-0"></div>
 
         {/* NAVIGATION */}
-        <nav className="relative z-50 flex items-center justify-between px-8 py-6 max-w-7xl mx-auto w-full border-b border-[#d4d8c5]/10">
-          <div className="flex items-center gap-4">
-            <img src="/logo-transparent.svg" alt="Naxus Logo" className="w-16 h-16 object-contain scale-110" />
-            <span className="text-3xl font-bold tracking-[0.2em] text-[#d4d8c5] uppercase" style={{ fontFamily: 'var(--font-syncopate)' }}>Naxus</span>
+        {/* NAVIGATION */}
+        <nav className="relative z-50 flex items-center justify-between px-4 md:px-8 py-4 md:py-6 max-w-7xl mx-auto w-full border-b border-[#d4d8c5]/10">
+          <div className="flex items-center gap-2 md:gap-4">
+            <img src="/logo-transparent.svg" alt="Naxus Logo" className="w-10 h-10 md:w-16 md:h-16 object-contain scale-110" />
+            <span className="text-xl md:text-3xl font-bold tracking-[0.2em] text-[#d4d8c5] uppercase" style={{ fontFamily: 'var(--font-syncopate)' }}>Naxus</span>
           </div>
           <div className="hidden md:flex gap-8 text-sm font-mono uppercase tracking-widest text-gray-500">
             <a href="#servicios" className="hover:text-[#d4d8c5] transition-colors">Servicios</a>
             <a href="#proyectos" className="hover:text-[#d4d8c5] transition-colors">Proyectos</a>
             <a href="#equipo" className="hover:text-[#d4d8c5] transition-colors">Equipo</a>
           </div>
-          <button className="tech-border px-6 py-2 text-xs font-bold tracking-widest text-[#d4d8c5] uppercase bg-black/50 backdrop-blur hover:bg-[#d4d8c5] hover:text-[#11131a] transition-all">
+          <button className="tech-border px-4 py-2 md:px-6 md:py-2 text-[10px] md:text-xs font-bold tracking-widest text-[#d4d8c5] uppercase bg-black/50 backdrop-blur hover:bg-[#d4d8c5] hover:text-[#11131a] transition-all">
             Contactar
           </button>
         </nav>
 
         {/* CENTERED HERO SECTION */}
-        <section className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-8 lg:px-12 max-w-7xl mx-auto w-full">
+        <section className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4 md:px-8 lg:px-12 max-w-7xl mx-auto w-full">
           {/* TEXT COLUMN */}
-          <div className="flex flex-col items-start text-left pt-20 lg:pt-0">
+          <div className="flex flex-col items-start text-left pt-12 md:pt-20 lg:pt-0 w-full overflow-hidden">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 border border-[#d4d8c5]/20 bg-black/50 backdrop-blur-md text-[#d4d8c5] text-xs font-mono tracking-widest uppercase mb-8"
+              className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-1.5 border border-[#d4d8c5]/20 bg-black/50 backdrop-blur-md text-[#d4d8c5] text-[10px] md:text-xs font-mono tracking-widest uppercase mb-6 md:mb-8 whitespace-nowrap"
             >
-              <span className="w-2 h-2 bg-[#d4d8c5] animate-pulse"></span>
-              Infraestructura Digital Avanzada
+              <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-[#d4d8c5] animate-pulse"></span>
+              Infraestructura Digital
             </motion.div>
 
             <motion.h1 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-              className="text-5xl md:text-7xl font-black mb-6 tracking-tighter leading-[0.9] uppercase"
+              className="text-[11vw] sm:text-6xl md:text-7xl font-black mb-4 md:mb-6 tracking-tighter leading-[0.9] uppercase w-full"
             >
-              <span className="text-white block">DESARROLLAMOS</span>
-              <span className="text-[#d4d8c5]/70 block">TU VISIÓN.</span>
+              <span className="text-white block truncate md:overflow-visible">DESARROLLAMOS</span>
+              <span className="text-[#d4d8c5]/70 block truncate md:overflow-visible">TU VISIÓN.</span>
             </motion.h1>
 
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
-              className="mt-2 text-xl text-gray-400 max-w-xl font-light leading-relaxed"
+              className="mt-2 text-base md:text-xl text-gray-400 max-w-xl font-light leading-relaxed"
             >
-              Materializamos cualquier idea en ecosistemas digitales de alto rendimiento. <br />
-              Desarrollamos software, aplicaciones y plataformas tecnológicas diseñadas para escalar tu negocio al siguiente nivel.
+              Materializamos cualquier idea en ecosistemas digitales de alto rendimiento. <br className="hidden md:block" />
+              Desarrollamos software, aplicaciones y plataformas tecnológicas diseñadas para escalar tu negocio.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" }}
-              className="mt-12"
+              className="mt-8 md:mt-12 w-full sm:w-auto"
             >
-              <button className="tech-border relative inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#d4d8c5] text-[#11131a] font-bold uppercase tracking-widest text-sm overflow-hidden transition-all hover:bg-white hover:shadow-[0_0_40px_-10px_rgba(212,216,197,0.8)]">
+              <button className="tech-border w-full sm:w-auto relative inline-flex items-center justify-center gap-3 px-6 py-4 md:px-10 md:py-4 bg-[#d4d8c5] text-[#11131a] font-bold uppercase tracking-widest text-xs md:text-sm overflow-hidden transition-all hover:bg-white hover:shadow-[0_0_40px_-10px_rgba(212,216,197,0.8)]">
                 <Terminal className="w-4 h-4" />
                 Hablar con un experto
               </button>
@@ -497,8 +498,8 @@ export default function Home() {
                 </motion.p>
               </div>
 
-              <a href="mailto:contacto@naxus.com" className="group/btn relative px-8 py-4 bg-transparent border border-cyan-500/50 text-cyan-400 font-mono uppercase tracking-widest text-sm overflow-hidden transition-all hover:bg-cyan-500/10 hover:border-cyan-400">
-                <span className="relative z-10 flex items-center gap-3 font-bold">
+              <a href="mailto:contacto@naxus.com" className="group/btn relative px-4 py-4 md:px-8 md:py-4 bg-transparent border border-cyan-500/50 text-cyan-400 font-mono uppercase tracking-widest text-[10px] sm:text-xs md:text-sm overflow-hidden transition-all hover:bg-cyan-500/10 hover:border-cyan-400">
+                <span className="relative z-10 flex items-center gap-2 md:gap-3 font-bold">
                   <Code2 className="w-4 h-4" /> [ INICIAR_PROYECTO ] <span className="w-2 h-4 bg-cyan-400 animate-pulse"></span>
                 </span>
               </a>
