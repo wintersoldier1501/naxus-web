@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, Layers, Code2, Rocket, MonitorSmartphone, Users, ArrowUpRight, ArrowRight, Server, Activity, X, CheckCircle2 } from 'lucide-react';
+import { Terminal, Layers, Code2, Rocket, MonitorSmartphone, Users, ArrowUpRight, ArrowRight, Server, Activity, X, CheckCircle2, MousePointer2 } from 'lucide-react';
 
 const projectsData: Record<string, any> = {
   eyemax: {
@@ -231,7 +232,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Card 1 */}
-          <div className="tech-border bg-[#12141c] p-8 hover:bg-[#d4d8c5]/5 transition-colors group cursor-pointer">
+          <Link href="/servicios/desarrollo-web" className="tech-border bg-[#12141c] p-8 hover:bg-[#d4d8c5]/5 transition-colors group cursor-pointer block">
             <div className="w-16 h-12 mb-8 relative flex flex-col border border-white/10 rounded-md overflow-hidden bg-[#12141c] shadow-[0_0_15px_rgba(34,211,238,0.1)] group-hover:shadow-[0_0_20px_rgba(34,211,238,0.3)] transition-all">
               <div className="h-3 bg-white/5 border-b border-white/10 flex items-center gap-1 px-1.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-red-500/80" />
@@ -256,10 +257,10 @@ export default function Home() {
               Sitios web corporativos, tiendas e-commerce y aplicaciones web escalables. Código limpio, rápido y optimizado para SEO.
             </p>
             <span className="text-xs font-mono text-[#d4d8c5] uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">Explorar <ArrowRight className="w-4 h-4"/></span>
-          </div>
+          </Link>
           
           {/* Card 2 */}
-          <div className="tech-border bg-[#12141c] p-8 hover:bg-[#d4d8c5]/5 transition-colors group cursor-pointer">
+          <Link href="/servicios/desarrollo-de-software" className="tech-border bg-[#12141c] p-8 hover:bg-[#d4d8c5]/5 transition-colors group cursor-pointer block">
             <div className="w-20 h-16 mb-8 flex items-center justify-center relative font-mono text-2xl font-bold">
               <motion.span animate={{ x: [-3, 0, -3], color: ["#22d3ee", "#a855f7", "#22d3ee"] }} transition={{ duration: 2, repeat: Infinity }} className="text-cyan-400">{"{"}</motion.span>
               <div className="flex flex-col gap-1.5 mx-2 w-8">
@@ -276,10 +277,10 @@ export default function Home() {
             <span className="text-xs font-mono text-[#d4d8c5] uppercase tracking-widest flex items-center gap-2 group-hover:translate-x-2 transition-transform">
               <ArrowRight className="w-4 h-4" /> Descubrir más
             </span>
-          </div>
+          </Link>
 
           {/* Card 3 */}
-          <div className="tech-border bg-[#12141c] p-8 hover:bg-[#d4d8c5]/5 transition-colors group cursor-pointer">
+          <Link href="/servicios/diseno-ui-ux" className="tech-border bg-[#12141c] p-8 hover:bg-[#d4d8c5]/5 transition-colors group cursor-pointer block">
             <div className="w-16 h-16 mb-8 relative border border-white/10 rounded bg-black/40 p-1.5 flex gap-1.5 shadow-[0_0_15px_rgba(168,85,247,0.1)] group-hover:shadow-[0_0_20px_rgba(168,85,247,0.3)] transition-all">
               {/* Sidebar */}
               <div className="w-3 h-full border border-white/10 rounded-sm bg-white/5" />
@@ -313,7 +314,7 @@ export default function Home() {
               Interfaces de usuario espectaculares enfocadas en la conversión. Experiencias digitales que enamoran a tus clientes.
             </p>
             <span className="text-xs font-mono text-[#d4d8c5] uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">Explorar <ArrowRight className="w-4 h-4"/></span>
-          </div>
+          </Link>
         </div>
       </section>
 
