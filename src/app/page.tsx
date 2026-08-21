@@ -225,12 +225,13 @@ export default function Home() {
 
       {/* 2. SERVICIOS */}
       <section id="servicios" className="py-32 max-w-7xl mx-auto px-6 relative z-10">
-        <div className="mb-16">
-          <h2 className="text-sm font-mono text-[#d4d8c5] tracking-widest uppercase mb-2">// Nuestras Capacidades</h2>
-          <h3 className="text-4xl md:text-5xl font-bold">Arquitectura y Software.</h3>
-        </div>
+        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.7 }}>
+          <div className="mb-16">
+            <h2 className="text-sm font-mono text-[#d4d8c5] tracking-widest uppercase mb-2">// Nuestras Capacidades</h2>
+            <h3 className="text-4xl md:text-5xl font-bold">Arquitectura y Software.</h3>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Card 1 */}
           <Link href="/servicios/desarrollo-web" className="tech-border bg-[#12141c] p-8 hover:bg-[#d4d8c5]/5 transition-colors group cursor-pointer block">
             <div className="w-16 h-12 mb-8 relative flex flex-col border border-white/10 rounded-md overflow-hidden bg-[#12141c] shadow-[0_0_15px_rgba(34,211,238,0.1)] group-hover:shadow-[0_0_20px_rgba(34,211,238,0.3)] transition-all">
@@ -315,12 +316,13 @@ export default function Home() {
             </p>
             <span className="text-xs font-mono text-[#d4d8c5] uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">Explorar <ArrowRight className="w-4 h-4"/></span>
           </Link>
-        </div>
+          </div>
+        </motion.div>
       </section>
 
       {/* 3. PROYECTOS (PORTAFOLIO) */}
       <section id="proyectos" className="py-32 bg-black/50 border-y border-[#d4d8c5]/10 relative z-10">
-        <div className="max-w-7xl mx-auto px-6">
+        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.7 }} className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
               <h2 className="text-sm font-mono text-[#d4d8c5] tracking-widest uppercase mb-2">// Casos de Estudio</h2>
@@ -410,17 +412,18 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* 4. EQUIPO */}
       <section id="equipo" className="py-32 max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-sm font-mono text-[#d4d8c5] tracking-widest uppercase mb-2">// Núcleo Operativo</h2>
-          <h3 className="text-4xl md:text-5xl font-bold">Conoce al Equipo.</h3>
-        </div>
+        <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.7 }}>
+          <div className="text-center mb-16">
+            <h2 className="text-sm font-mono text-[#d4d8c5] tracking-widest uppercase mb-2">// Núcleo Operativo</h2>
+            <h3 className="text-4xl md:text-5xl font-bold">Conoce al Equipo.</h3>
+          </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {/* Team Member 1 */}
           <div className="flex flex-col items-center text-center group">
             <div className="w-40 h-40 tech-border bg-[#1a1d27] rounded-full mb-6 flex items-center justify-center overflow-hidden relative">
@@ -453,7 +456,8 @@ export default function Home() {
             <p className="text-[#d4d8c5] text-sm font-mono uppercase tracking-wider mb-2">Chief Operating Officer</p>
             <span className="text-gray-400 font-light">Paulina Lopez</span>
           </div>
-        </div>
+          </div>
+        </motion.div>
       </section>
 
       {/* TERMINAL CTA SECTION */}
@@ -462,7 +466,7 @@ export default function Home() {
           <div className="hex-grid"></div>
         </div>
         
-        <div className="max-w-4xl mx-auto px-8 relative z-10">
+        <motion.div initial={{ opacity: 0, scale: 0.95, y: 40 }} whileInView={{ opacity: 1, scale: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.7 }} className="max-w-4xl mx-auto px-8 relative z-10">
           <div className="bg-black/80 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-16 shadow-[0_0_50px_-12px_rgba(34,211,238,0.15)] relative overflow-hidden group hover:shadow-[0_0_80px_-12px_rgba(34,211,238,0.25)] transition-shadow duration-700">
             {/* Ambient glow behind the terminal */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-cyan-500/10 via-purple-500/10 to-transparent blur-[80px] pointer-events-none group-hover:opacity-100 opacity-50 transition-opacity duration-700"></div>
@@ -507,7 +511,7 @@ export default function Home() {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* FOOTER */}

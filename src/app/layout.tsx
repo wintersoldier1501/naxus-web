@@ -24,17 +24,42 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Naxus | Desarrollo y Arquitectura",
-  description: "Agencia de desarrollo de software",
+  title: "Naxus | Desarrollo y Arquitectura de Software",
+  description: "Materializamos cualquier idea en ecosistemas digitales de alto rendimiento. Desarrollo de software, web y apps a la medida.",
+  openGraph: {
+    title: 'Naxus | Agencia de Desarrollo Tecnológico',
+    description: 'Materializamos cualquier idea en ecosistemas digitales de alto rendimiento. Desarrollamos software para escalar tu negocio.',
+    url: 'https://naxus.com.mx',
+    siteName: 'Naxus',
+    images: [
+      {
+        url: 'https://naxus.com.mx/og-image.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'es_MX',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Naxus | Desarrollo y Arquitectura de Software',
+    description: 'Agencia de desarrollo de software y aplicaciones web escalables.',
+  },
 };
+
+import { Analytics } from "@vercel/analytics/react";
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="es"
       className={`${geistSans.variable} ${geistMono.variable} ${syncopate.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
