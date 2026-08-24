@@ -159,7 +159,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Concept 1: Auto-Scaling Escalabilidad Card */}
+            {/* Concept 2: Expanding Cloud Node Card */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1, y: [0, 20, 0] }}
@@ -168,80 +168,64 @@ export default function Home() {
             >
               <div className="flex justify-between items-center mb-3">
                 <div className="flex items-center gap-2">
-                  <div className="p-1.5 bg-cyan-500/10 rounded-md border border-cyan-500/20">
-                    <Activity className="w-4 h-4 text-cyan-400" />
+                  <div className="p-1.5 bg-purple-500/10 rounded-md border border-purple-500/20">
+                    <Activity className="w-4 h-4 text-purple-400" />
                   </div>
-                  <div className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Auto-Scaling</div>
+                  <div className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Escalabilidad</div>
                 </div>
-                <motion.div 
-                  animate={{ opacity: [1, 1, 1, 0, 0, 1] }} 
-                  transition={{ duration: 6, repeat: Infinity, times: [0, 0.4, 0.5, 0.8, 0.9, 1] }}
-                  className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]"
-                />
+                <div className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">100x</div>
               </div>
-              
-              <div className="mb-2">
-                <div className="text-[10px] text-gray-500 font-mono mb-1 flex justify-between">
-                  <span>Tráfico Real</span>
-                  <motion.span 
-                    animate={{ color: ["#6b7280", "#6b7280", "#ef4444", "#ef4444", "#6b7280"] }}
-                    transition={{ duration: 6, repeat: Infinity, times: [0, 0.4, 0.5, 0.8, 0.9] }}
+
+              {/* Expanding Network Animation */}
+              <div className="h-24 lg:h-28 w-full relative flex items-center justify-center mt-2">
+                <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
+                  {/* Outer Ring Connections (Initially Hidden) */}
+                  <motion.g 
+                    animate={{ opacity: [0, 0, 1, 1, 0], scale: [0.8, 0.8, 1, 1, 0.8] }}
+                    transition={{ duration: 6, repeat: Infinity, times: [0, 0.3, 0.4, 0.9, 1] }}
+                    style={{ transformOrigin: "50px 50px" }}
                   >
-                    LOAD
-                  </motion.span>
-                </div>
-                {/* Traffic Graph */}
-                <div className="h-8 lg:h-10 w-full relative overflow-hidden border-b border-white/10">
-                  <svg viewBox="0 0 100 30" preserveAspectRatio="none" className="w-full h-full absolute inset-0">
-                     <motion.path 
-                        d="M0,25 L20,25 L30,22 L40,25 L50,22 L60,25 L70,22 L80,25 L90,25 L100,25" 
-                        fill="none" strokeWidth="1.5"
-                        animate={{ 
-                          stroke: ["#34d399", "#34d399", "#ef4444", "#ef4444", "#34d399"],
-                          d: [
-                            "M0,25 L20,25 L30,22 L40,25 L50,22 L60,25 L70,22 L80,25 L90,25 L100,25", // Flat
-                            "M0,25 L20,25 L30,22 L40,25 L50,22 L60,25 L70,22 L80,25 L90,25 L100,25", // Flat
-                            "M0,25 L20,25 L30,5 L40,15 L50,2 L60,12 L70,5 L80,25 L90,25 L100,25",   // Spike
-                            "M0,25 L20,25 L30,5 L40,15 L50,2 L60,12 L70,5 L80,25 L90,25 L100,25",   // Spike
-                            "M0,25 L20,25 L30,22 L40,25 L50,22 L60,25 L70,22 L80,25 L90,25 L100,25"  // Flat
-                          ]
-                        }}
-                        transition={{ duration: 6, repeat: Infinity, times: [0, 0.4, 0.5, 0.8, 0.9] }}
-                     />
-                  </svg>
-                </div>
+                    <path d="M 50 15 L 80 30 L 80 70 L 50 85 L 20 70 L 20 30 Z" stroke="rgba(168,85,247,0.3)" strokeWidth="1" fill="none" />
+                    
+                    {/* Inner to Outer Connections */}
+                    <path d="M 50 40 L 50 15" stroke="rgba(34,211,238,0.2)" strokeWidth="1" />
+                    <path d="M 60 60 L 80 70" stroke="rgba(34,211,238,0.2)" strokeWidth="1" />
+                    <path d="M 40 60 L 20 70" stroke="rgba(34,211,238,0.2)" strokeWidth="1" />
+                    <path d="M 50 40 L 80 30" stroke="rgba(34,211,238,0.2)" strokeWidth="1" />
+                    <path d="M 50 40 L 20 30" stroke="rgba(34,211,238,0.2)" strokeWidth="1" />
+                    <path d="M 60 60 L 50 85" stroke="rgba(34,211,238,0.2)" strokeWidth="1" />
+                    <path d="M 40 60 L 50 85" stroke="rgba(34,211,238,0.2)" strokeWidth="1" />
+
+                    {/* Outer Nodes */}
+                    <circle cx="50" cy="15" r="3" fill="#a855f7" style={{ filter: "drop-shadow(0 0 6px #a855f7)" }} />
+                    <circle cx="80" cy="30" r="2.5" fill="#22d3ee" />
+                    <circle cx="80" cy="70" r="3" fill="#a855f7" />
+                    <circle cx="50" cy="85" r="2.5" fill="#22d3ee" style={{ filter: "drop-shadow(0 0 4px #22d3ee)" }} />
+                    <circle cx="20" cy="70" r="3" fill="#a855f7" />
+                    <circle cx="20" cy="30" r="2.5" fill="#22d3ee" />
+                  </motion.g>
+
+                  {/* Core Triangle (Always visible) */}
+                  <g>
+                    <path d="M 50 40 L 60 60 L 40 60 Z" stroke="rgba(34,211,238,0.5)" strokeWidth="1.5" fill="rgba(34,211,238,0.05)" />
+                    {/* Core Nodes */}
+                    <motion.circle cx="50" cy="40" r="3.5" fill="#22d3ee" animate={{ scale: [1, 1.5, 1] }} transition={{ duration: 2, repeat: Infinity }} style={{ filter: "drop-shadow(0 0 8px #22d3ee)" }} />
+                    <circle cx="60" cy="60" r="2.5" fill="#22d3ee" />
+                    <circle cx="40" cy="60" r="2.5" fill="#22d3ee" />
+                  </g>
+
+                  {/* Energy Pulse (Expands outward to trigger the new ring) */}
+                  <motion.circle 
+                    cx="50" cy="50" r="10" 
+                    stroke="#a855f7" strokeWidth="2" fill="none"
+                    animate={{ r: [10, 45, 45], opacity: [0, 1, 0, 0] }}
+                    transition={{ duration: 6, repeat: Infinity, times: [0, 0.2, 0.35, 1] }}
+                    style={{ filter: "drop-shadow(0 0 8px #a855f7)" }}
+                  />
+                </svg>
               </div>
-
-              {/* Server Blocks */}
-              <div className="flex justify-between items-end h-12 mt-3 px-2">
-                {/* Server 1 (Always on) */}
-                <div className="w-[30%] h-full bg-cyan-500/10 border border-cyan-500/30 rounded-md flex flex-col justify-evenly p-1 relative overflow-hidden shadow-[0_0_10px_rgba(34,211,238,0.1)]">
-                  <div className="w-full h-1 bg-cyan-400/50 rounded-full"></div>
-                  <div className="w-full h-1 bg-cyan-400/50 rounded-full"></div>
-                  <div className="w-1/2 h-1 bg-cyan-400 rounded-full animate-pulse"></div>
-                </div>
-
-                {/* Server 2 (Clones in) */}
-                <motion.div 
-                  animate={{ scale: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, times: [0, 0.45, 0.55, 0.85, 0.95] }}
-                  className="w-[30%] h-full bg-cyan-500/20 border border-cyan-400 rounded-md flex flex-col justify-evenly p-1 shadow-[0_0_15px_rgba(34,211,238,0.4)]"
-                >
-                  <div className="w-full h-1 bg-cyan-400/80 rounded-full"></div>
-                  <div className="w-full h-1 bg-cyan-400/80 rounded-full"></div>
-                  <div className="w-1/2 h-1 bg-white rounded-full"></div>
-                </motion.div>
-
-                {/* Server 3 (Clones in) */}
-                <motion.div 
-                  animate={{ scale: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, times: [0, 0.48, 0.58, 0.82, 0.92] }}
-                  className="w-[30%] h-full bg-cyan-500/20 border border-cyan-400 rounded-md flex flex-col justify-evenly p-1 shadow-[0_0_15px_rgba(34,211,238,0.4)]"
-                >
-                  <div className="w-full h-1 bg-cyan-400/80 rounded-full"></div>
-                  <div className="w-full h-1 bg-cyan-400/80 rounded-full"></div>
-                  <div className="w-1/2 h-1 bg-white rounded-full"></div>
-                </motion.div>
+              <div className="text-center mt-1">
+                <span className="text-[9px] font-mono text-gray-500">Expansión Dinámica de Nodos</span>
               </div>
             </motion.div>
           </div>
