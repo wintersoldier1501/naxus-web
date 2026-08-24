@@ -159,45 +159,89 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Floating Performance Card */}
+            {/* Concept 1: Auto-Scaling Escalabilidad Card */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1, y: [0, 20, 0] }}
               transition={{ opacity: {duration: 0.8, delay: 0.3}, scale: {duration: 0.8, delay: 0.3}, y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 } }}
-              className="absolute left-0 lg:left-10 bottom-0 lg:bottom-20 w-[65%] max-w-[220px] lg:w-56 bg-[#12141c]/90 backdrop-blur-xl border border-white/10 rounded-xl p-4 lg:p-6 shadow-2xl"
+              className="absolute left-0 lg:left-10 bottom-0 lg:bottom-12 w-[75%] max-w-[250px] lg:w-64 bg-[#12141c]/95 backdrop-blur-xl border border-white/10 rounded-xl p-4 lg:p-5 shadow-2xl"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-emerald-500/10 rounded-lg">
-                  <Activity className="w-5 h-5 text-emerald-400" />
+              <div className="flex justify-between items-center mb-3">
+                <div className="flex items-center gap-2">
+                  <div className="p-1.5 bg-cyan-500/10 rounded-md border border-cyan-500/20">
+                    <Activity className="w-4 h-4 text-cyan-400" />
+                  </div>
+                  <div className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Auto-Scaling</div>
                 </div>
-                <div className="text-xs font-mono text-gray-400 uppercase tracking-widest">Escalabilidad</div>
+                <motion.div 
+                  animate={{ opacity: [1, 1, 1, 0, 0, 1] }} 
+                  transition={{ duration: 6, repeat: Infinity, times: [0, 0.4, 0.5, 0.8, 0.9, 1] }}
+                  className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]"
+                />
               </div>
-              <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 mb-1">100x</div>
-              <div className="mt-4 h-16 w-full relative">
-                <svg viewBox="0 0 100 60" className="w-full h-full overflow-visible">
-                  {/* Background faint lines */}
-                  <path d="M 10 30 L 40 15" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
-                  <path d="M 10 30 L 40 45" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
-                  <path d="M 40 15 L 80 5" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
-                  <path d="M 40 15 L 80 25" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
-                  <path d="M 40 45 L 80 35" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
-                  <path d="M 40 45 L 80 55" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
-                  
-                  {/* Animated Data Packets (Paths with dash offset) */}
-                  <motion.path d="M 10 30 L 40 15 L 80 5" stroke="#34d399" strokeWidth="2" strokeDasharray="10 100" animate={{ strokeDashoffset: [100, -50] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }} style={{ filter: "drop-shadow(0 0 4px #34d399)" }} />
-                  <motion.path d="M 10 30 L 40 15 L 80 25" stroke="#34d399" strokeWidth="2" strokeDasharray="10 100" animate={{ strokeDashoffset: [100, -50] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.3 }} style={{ filter: "drop-shadow(0 0 4px #34d399)" }} />
-                  <motion.path d="M 10 30 L 40 45 L 80 35" stroke="#34d399" strokeWidth="2" strokeDasharray="10 100" animate={{ strokeDashoffset: [100, -50] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.6 }} style={{ filter: "drop-shadow(0 0 4px #34d399)" }} />
-                  <motion.path d="M 10 30 L 40 45 L 80 55" stroke="#34d399" strokeWidth="2" strokeDasharray="10 100" animate={{ strokeDashoffset: [100, -50] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.9 }} style={{ filter: "drop-shadow(0 0 4px #34d399)" }} />
+              
+              <div className="mb-2">
+                <div className="text-[10px] text-gray-500 font-mono mb-1 flex justify-between">
+                  <span>Tráfico Real</span>
+                  <motion.span 
+                    animate={{ color: ["#6b7280", "#6b7280", "#ef4444", "#ef4444", "#6b7280"] }}
+                    transition={{ duration: 6, repeat: Infinity, times: [0, 0.4, 0.5, 0.8, 0.9] }}
+                  >
+                    LOAD
+                  </motion.span>
+                </div>
+                {/* Traffic Graph */}
+                <div className="h-8 lg:h-10 w-full relative overflow-hidden border-b border-white/10">
+                  <svg viewBox="0 0 100 30" preserveAspectRatio="none" className="w-full h-full absolute inset-0">
+                     <motion.path 
+                        d="M0,25 L20,25 L30,22 L40,25 L50,22 L60,25 L70,22 L80,25 L90,25 L100,25" 
+                        fill="none" strokeWidth="1.5"
+                        animate={{ 
+                          stroke: ["#34d399", "#34d399", "#ef4444", "#ef4444", "#34d399"],
+                          d: [
+                            "M0,25 L20,25 L30,22 L40,25 L50,22 L60,25 L70,22 L80,25 L90,25 L100,25", // Flat
+                            "M0,25 L20,25 L30,22 L40,25 L50,22 L60,25 L70,22 L80,25 L90,25 L100,25", // Flat
+                            "M0,25 L20,25 L30,5 L40,15 L50,2 L60,12 L70,5 L80,25 L90,25 L100,25",   // Spike
+                            "M0,25 L20,25 L30,5 L40,15 L50,2 L60,12 L70,5 L80,25 L90,25 L100,25",   // Spike
+                            "M0,25 L20,25 L30,22 L40,25 L50,22 L60,25 L70,22 L80,25 L90,25 L100,25"  // Flat
+                          ]
+                        }}
+                        transition={{ duration: 6, repeat: Infinity, times: [0, 0.4, 0.5, 0.8, 0.9] }}
+                     />
+                  </svg>
+                </div>
+              </div>
 
-                  {/* Nodes */}
-                  <circle cx="10" cy="30" r="4" fill="#34d399" className="drop-shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
-                  <circle cx="40" cy="15" r="3" fill="#34d399" />
-                  <circle cx="40" cy="45" r="3" fill="#34d399" />
-                  <motion.circle cx="80" cy="5" r="2" fill="#34d399" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: 0 }} />
-                  <motion.circle cx="80" cy="25" r="2" fill="#34d399" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: 0.3 }} />
-                  <motion.circle cx="80" cy="35" r="2" fill="#34d399" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: 0.6 }} />
-                  <motion.circle cx="80" cy="55" r="2" fill="#34d399" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: 0.9 }} />
-                </svg>
+              {/* Server Blocks */}
+              <div className="flex justify-between items-end h-12 mt-3 px-2">
+                {/* Server 1 (Always on) */}
+                <div className="w-[30%] h-full bg-cyan-500/10 border border-cyan-500/30 rounded-md flex flex-col justify-evenly p-1 relative overflow-hidden shadow-[0_0_10px_rgba(34,211,238,0.1)]">
+                  <div className="w-full h-1 bg-cyan-400/50 rounded-full"></div>
+                  <div className="w-full h-1 bg-cyan-400/50 rounded-full"></div>
+                  <div className="w-1/2 h-1 bg-cyan-400 rounded-full animate-pulse"></div>
+                </div>
+
+                {/* Server 2 (Clones in) */}
+                <motion.div 
+                  animate={{ scale: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, times: [0, 0.45, 0.55, 0.85, 0.95] }}
+                  className="w-[30%] h-full bg-cyan-500/20 border border-cyan-400 rounded-md flex flex-col justify-evenly p-1 shadow-[0_0_15px_rgba(34,211,238,0.4)]"
+                >
+                  <div className="w-full h-1 bg-cyan-400/80 rounded-full"></div>
+                  <div className="w-full h-1 bg-cyan-400/80 rounded-full"></div>
+                  <div className="w-1/2 h-1 bg-white rounded-full"></div>
+                </motion.div>
+
+                {/* Server 3 (Clones in) */}
+                <motion.div 
+                  animate={{ scale: [0, 0, 1, 1, 0], opacity: [0, 0, 1, 1, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, times: [0, 0.48, 0.58, 0.82, 0.92] }}
+                  className="w-[30%] h-full bg-cyan-500/20 border border-cyan-400 rounded-md flex flex-col justify-evenly p-1 shadow-[0_0_15px_rgba(34,211,238,0.4)]"
+                >
+                  <div className="w-full h-1 bg-cyan-400/80 rounded-full"></div>
+                  <div className="w-full h-1 bg-cyan-400/80 rounded-full"></div>
+                  <div className="w-1/2 h-1 bg-white rounded-full"></div>
+                </motion.div>
               </div>
             </motion.div>
           </div>
