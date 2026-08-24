@@ -224,9 +224,7 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <div className="text-center mt-1">
-                <span className="text-[9px] font-mono text-gray-500">Expansión Dinámica de Nodos</span>
-              </div>
+              {/* Removed text block */}
             </motion.div>
           </div>
         </section>
