@@ -44,6 +44,49 @@ const projectsData: Record<string, any> = {
   }
 };
 
+const HolographicCard = ({ children, className }: any) => {
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
+
+  const handleMouseMove = (e: any) => {
+    const card = e.currentTarget;
+    const box = card.getBoundingClientRect();
+    const x = e.clientX - box.left;
+    const y = e.clientY - box.top;
+    const centerX = box.width / 2;
+    const centerY = box.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -15; // Max rotation 15deg
+    const rotateY = ((x - centerX) / centerX) * 15;
+    setRotateX(rotateX);
+    setRotateY(rotateY);
+  };
+
+  const handleMouseLeave = () => {
+    setRotateX(0);
+    setRotateY(0);
+  };
+
+  return (
+    <div style={{ perspective: 1000 }} className={`relative z-50 ${className}`}>
+      <motion.div
+        className="w-full h-full relative"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        animate={{ rotateX, rotateY }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        style={{ transformStyle: "preserve-3d" }}
+      >
+        {/* Holographic Glare overlay */}
+        <motion.div 
+          className="absolute inset-0 z-10 pointer-events-none rounded-xl bg-gradient-to-tr from-white/0 via-white/10 to-white/0"
+          animate={{ x: rotateY * 2, y: rotateX * -2, opacity: Math.abs(rotateX) + Math.abs(rotateY) > 5 ? 1 : 0 }}
+        />
+        {children}
+      </motion.div>
+    </div>
+  );
+};
+
 export default function Home() {
   const [activeProject, setActiveProject] = useState<string | null>(null);
 
@@ -197,7 +240,7 @@ export default function Home() {
             --- END OF OLD ANIMATIONS --- */}
 
 
-            {/* Concept 3: Transforming Code Editor to UI */}
+            {/* --- CONCEPT 2 & 3 (COMMENTED OUT FOR BACKUP) ---
             <motion.div 
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0, y: [0, -15, 0] }}
@@ -213,7 +256,6 @@ export default function Home() {
                 <div className="text-[10px] font-mono text-gray-500">naxus_engine.tsx</div>
               </div>
               <div className="relative h-48 lg:h-56 p-4 lg:p-6 overflow-hidden bg-[#0a0b0f]">
-                {/* Code Phase */}
                 <motion.div 
                   animate={{ opacity: [1, 1, 0, 0, 1] }} 
                   transition={{ duration: 8, repeat: Infinity, times: [0, 0.4, 0.45, 0.95, 1] }}
@@ -229,7 +271,6 @@ export default function Home() {
                   <div className="text-purple-400">{"}"}</div>
                 </motion.div>
 
-                {/* UI Phase */}
                 <motion.div 
                   animate={{ opacity: [0, 0, 1, 1, 0] }} 
                   transition={{ duration: 8, repeat: Infinity, times: [0, 0.45, 0.5, 0.9, 0.95] }}
@@ -250,7 +291,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Concept 2: Neural Network AI Card */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1, y: [0, 20, 0] }}
@@ -265,12 +305,10 @@ export default function Home() {
               </div>
               <div className="mt-2 h-20 lg:h-24 w-full relative">
                 <svg viewBox="0 0 100 60" className="w-full h-full overflow-visible">
-                  {/* Neural Connections */}
                   <motion.path d="M 20 30 L 50 15 L 80 30 L 50 45 Z" stroke="rgba(168, 85, 247, 0.2)" strokeWidth="1" fill="none" />
                   <motion.path d="M 20 30 L 50 30 L 80 30" stroke="rgba(34, 211, 238, 0.2)" strokeWidth="1" fill="none" />
                   <motion.path d="M 50 15 L 50 45" stroke="rgba(34, 211, 238, 0.2)" strokeWidth="1" fill="none" />
                   
-                  {/* Energy Pulses */}
                   <circle r="1.5" fill="#a855f7" style={{ filter: "drop-shadow(0 0 4px #a855f7)" }}>
                     <animateMotion dur="2s" repeatCount="indefinite" path="M 20 30 L 50 15 L 80 30" />
                   </circle>
@@ -278,13 +316,100 @@ export default function Home() {
                     <animateMotion dur="2.5s" repeatCount="indefinite" path="M 20 30 L 50 45 L 80 30" />
                   </circle>
                   
-                  {/* Nodes */}
                   <motion.circle cx="20" cy="30" r="3" fill="#22d3ee" animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 1.5, repeat: Infinity }} />
                   <motion.circle cx="50" cy="15" r="2.5" fill="#a855f7" animate={{ scale: [1, 1.4, 1] }} transition={{ duration: 1.5, delay: 0.2, repeat: Infinity }} />
                   <motion.circle cx="50" cy="30" r="4" fill="#fff" className="drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]" animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 1.5, delay: 0.4, repeat: Infinity }} />
                   <motion.circle cx="50" cy="45" r="2.5" fill="#22d3ee" animate={{ scale: [1, 1.4, 1] }} transition={{ duration: 1.5, delay: 0.6, repeat: Infinity }} />
                   <motion.circle cx="80" cy="30" r="3" fill="#a855f7" animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 1.5, delay: 0.8, repeat: Infinity }} />
                 </svg>
+              </div>
+            </motion.div>
+            --- END OF CONCEPT 2 & 3 --- */}
+
+            {/* Concept 4: Holographic 3D Card (replaces main window) */}
+            <HolographicCard className="absolute right-0 lg:right-0 top-4 lg:top-8 w-[85%] max-w-sm lg:w-[22rem]">
+              <div className="bg-[#12141c]/95 backdrop-blur-xl border border-white/20 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-1">
+                <div className="border border-white/5 rounded-xl bg-gradient-to-b from-white/5 to-transparent h-48 lg:h-56 p-6 flex flex-col justify-between relative overflow-hidden">
+                   {/* Grid background inside card */}
+                   <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50"></div>
+                   
+                   <div className="relative z-10">
+                     <div className="flex justify-between items-start mb-4">
+                       <div className="p-2.5 bg-cyan-500/20 rounded-xl border border-cyan-500/30 shadow-[0_0_15px_rgba(34,211,238,0.2)]">
+                         <Layers className="w-5 h-5 text-cyan-400" />
+                       </div>
+                       <span className="px-2.5 py-1 rounded-full bg-white/10 border border-white/10 text-[10px] font-mono text-white/70 shadow-inner">PRO-TIER</span>
+                     </div>
+                     <h4 className="text-xl font-bold text-white mb-1 drop-shadow-md">Cloud Architecture</h4>
+                     <p className="text-xs text-gray-400 font-mono">Infraestructura de alto rendimiento</p>
+                   </div>
+                   
+                   <div className="relative z-10 w-full bg-black/40 rounded-lg p-3 border border-white/10 flex items-center justify-between mt-4 backdrop-blur-md shadow-inner">
+                     <div className="flex -space-x-2">
+                       <div className="w-6 h-6 rounded-full bg-purple-500/80 border-2 border-[#12141c] shadow-md"></div>
+                       <div className="w-6 h-6 rounded-full bg-emerald-500/80 border-2 border-[#12141c] shadow-md"></div>
+                       <div className="w-6 h-6 rounded-full bg-cyan-500/80 border-2 border-[#12141c] shadow-md"></div>
+                     </div>
+                     <div className="text-[10px] text-emerald-400 font-mono flex items-center gap-1.5 font-bold">
+                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]"></span>
+                       100% Uptime
+                     </div>
+                   </div>
+                </div>
+              </div>
+            </HolographicCard>
+
+            {/* Concept 1: DevOps Monitoring Dashboard (replaces floating card) */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1, y: [0, -15, 0] }}
+              transition={{ opacity: {duration: 0.8, delay: 0.3}, scale: {duration: 0.8, delay: 0.3}, y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 } }}
+              className="absolute left-0 lg:left-4 bottom-0 lg:bottom-10 w-[70%] max-w-[260px] lg:w-72 bg-[#0a0b0f]/95 backdrop-blur-xl border border-white/10 rounded-xl p-4 lg:p-5 shadow-2xl"
+            >
+              <div className="flex justify-between items-center mb-4 border-b border-white/5 pb-3">
+                <div className="flex items-center gap-2">
+                  <Server className="w-4 h-4 text-emerald-400" />
+                  <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Server Metrics</span>
+                </div>
+                <span className="text-[9px] font-mono text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-2 py-0.5 rounded-sm">LIVE</span>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="bg-white/5 rounded-md p-2 border border-white/5">
+                  <div className="text-[9px] text-gray-500 font-mono mb-1">CPU LOAD</div>
+                  <div className="text-sm lg:text-base text-white font-bold">12<span className="text-[10px] text-gray-500">%</span></div>
+                  <motion.div className="h-1 bg-white/10 rounded-full mt-1.5 overflow-hidden">
+                    <motion.div animate={{ width: ["10%", "45%", "12%", "30%"] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} className="h-full bg-cyan-400 shadow-[0_0_8px_#22d3ee]"></motion.div>
+                  </motion.div>
+                </div>
+                <div className="bg-white/5 rounded-md p-2 border border-white/5">
+                  <div className="text-[9px] text-gray-500 font-mono mb-1">RAM USAGE</div>
+                  <div className="text-sm lg:text-base text-white font-bold">2.4<span className="text-[10px] text-gray-500">GB</span></div>
+                  <motion.div className="h-1 bg-white/10 rounded-full mt-1.5 overflow-hidden">
+                    <motion.div animate={{ width: ["40%", "42%", "38%", "45%"] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} className="h-full bg-purple-500 shadow-[0_0_8px_#a855f7]"></motion.div>
+                  </motion.div>
+                </div>
+              </div>
+
+              <div className="bg-white/5 rounded-md p-2 border border-white/5 h-12 lg:h-16 relative overflow-hidden flex items-end">
+                 {/* Fake line chart */}
+                 <svg viewBox="0 0 100 30" preserveAspectRatio="none" className="w-full h-full absolute inset-0 opacity-80">
+                    <motion.path 
+                       d="M0,30 L0,15 L10,10 L20,20 L30,5 L40,15 L50,10 L60,25 L70,10 L80,15 L90,5 L100,20 L100,30 Z" 
+                       fill="rgba(52, 211, 153, 0.15)" 
+                    />
+                    <motion.path 
+                       d="M0,15 L10,10 L20,20 L30,5 L40,15 L50,10 L60,25 L70,10 L80,15 L90,5 L100,20" 
+                       fill="none" stroke="#34d399" strokeWidth="1.5"
+                       style={{ filter: "drop-shadow(0 0 4px #34d399)" }}
+                       animate={{ d: [
+                         "M0,15 L10,10 L20,20 L30,5 L40,15 L50,10 L60,25 L70,10 L80,15 L90,5 L100,20",
+                         "M0,20 L10,15 L20,10 L30,20 L40,5 L50,15 L60,10 L70,25 L80,10 L90,15 L100,5",
+                         "M0,15 L10,10 L20,20 L30,5 L40,15 L50,10 L60,25 L70,10 L80,15 L90,5 L100,20"
+                       ] }}
+                       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                 </svg>
               </div>
             </motion.div>
           </div>
