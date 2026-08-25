@@ -159,72 +159,46 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Concept 2: Expanding Cloud Node Card */}
+            {/* Floating Performance Card */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1, y: [0, 20, 0] }}
               transition={{ opacity: {duration: 0.8, delay: 0.3}, scale: {duration: 0.8, delay: 0.3}, y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 } }}
-              className="absolute left-0 lg:left-10 bottom-0 lg:bottom-12 w-[75%] max-w-[250px] lg:w-64 bg-[#12141c]/95 backdrop-blur-xl border border-white/10 rounded-xl p-4 lg:p-5 shadow-2xl"
+              className="absolute left-0 lg:left-10 bottom-0 lg:bottom-20 w-[65%] max-w-[220px] lg:w-56 bg-[#12141c]/90 backdrop-blur-xl border border-white/10 rounded-xl p-4 lg:p-6 shadow-2xl"
             >
-              <div className="flex justify-between items-center mb-3">
-                <div className="flex items-center gap-2">
-                  <div className="p-1.5 bg-purple-500/10 rounded-md border border-purple-500/20">
-                    <Activity className="w-4 h-4 text-purple-400" />
-                  </div>
-                  <div className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">Escalabilidad</div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-emerald-500/10 rounded-lg">
+                  <Activity className="w-5 h-5 text-emerald-400" />
                 </div>
-                <div className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">100x</div>
+                <div className="text-xs font-mono text-gray-400 uppercase tracking-widest">Escalabilidad</div>
               </div>
+              <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 mb-1">100x</div>
+              <div className="mt-4 h-16 w-full relative">
+                <svg viewBox="0 0 100 60" className="w-full h-full overflow-visible">
+                  {/* Background faint lines */}
+                  <path d="M 10 30 L 40 15" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
+                  <path d="M 10 30 L 40 45" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
+                  <path d="M 40 15 L 80 5" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
+                  <path d="M 40 15 L 80 25" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
+                  <path d="M 40 45 L 80 35" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
+                  <path d="M 40 45 L 80 55" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
+                  
+                  {/* Animated Data Packets (Paths with dash offset) */}
+                  <motion.path d="M 10 30 L 40 15 L 80 5" stroke="#34d399" strokeWidth="2" strokeDasharray="10 100" animate={{ strokeDashoffset: [100, -50] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }} style={{ filter: "drop-shadow(0 0 4px #34d399)" }} />
+                  <motion.path d="M 10 30 L 40 15 L 80 25" stroke="#34d399" strokeWidth="2" strokeDasharray="10 100" animate={{ strokeDashoffset: [100, -50] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.3 }} style={{ filter: "drop-shadow(0 0 4px #34d399)" }} />
+                  <motion.path d="M 10 30 L 40 45 L 80 35" stroke="#34d399" strokeWidth="2" strokeDasharray="10 100" animate={{ strokeDashoffset: [100, -50] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.6 }} style={{ filter: "drop-shadow(0 0 4px #34d399)" }} />
+                  <motion.path d="M 10 30 L 40 45 L 80 55" stroke="#34d399" strokeWidth="2" strokeDasharray="10 100" animate={{ strokeDashoffset: [100, -50] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.9 }} style={{ filter: "drop-shadow(0 0 4px #34d399)" }} />
 
-              {/* Expanding Network Animation */}
-              <div className="h-24 lg:h-28 w-full relative flex items-center justify-center mt-2">
-                <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
-                  {/* Outer Ring Connections (Initially Hidden) */}
-                  <motion.g 
-                    animate={{ opacity: [0, 0, 1, 1, 0], scale: [0.8, 0.8, 1, 1, 0.8] }}
-                    transition={{ duration: 6, repeat: Infinity, times: [0, 0.3, 0.4, 0.9, 1] }}
-                    style={{ transformOrigin: "50px 50px" }}
-                  >
-                    <path d="M 50 15 L 80 30 L 80 70 L 50 85 L 20 70 L 20 30 Z" stroke="rgba(168,85,247,0.3)" strokeWidth="1" fill="none" />
-                    
-                    {/* Inner to Outer Connections */}
-                    <path d="M 50 40 L 50 15" stroke="rgba(34,211,238,0.2)" strokeWidth="1" />
-                    <path d="M 60 60 L 80 70" stroke="rgba(34,211,238,0.2)" strokeWidth="1" />
-                    <path d="M 40 60 L 20 70" stroke="rgba(34,211,238,0.2)" strokeWidth="1" />
-                    <path d="M 50 40 L 80 30" stroke="rgba(34,211,238,0.2)" strokeWidth="1" />
-                    <path d="M 50 40 L 20 30" stroke="rgba(34,211,238,0.2)" strokeWidth="1" />
-                    <path d="M 60 60 L 50 85" stroke="rgba(34,211,238,0.2)" strokeWidth="1" />
-                    <path d="M 40 60 L 50 85" stroke="rgba(34,211,238,0.2)" strokeWidth="1" />
-
-                    {/* Outer Nodes */}
-                    <circle cx="50" cy="15" r="3" fill="#a855f7" style={{ filter: "drop-shadow(0 0 6px #a855f7)" }} />
-                    <circle cx="80" cy="30" r="2.5" fill="#22d3ee" />
-                    <circle cx="80" cy="70" r="3" fill="#a855f7" />
-                    <circle cx="50" cy="85" r="2.5" fill="#22d3ee" style={{ filter: "drop-shadow(0 0 4px #22d3ee)" }} />
-                    <circle cx="20" cy="70" r="3" fill="#a855f7" />
-                    <circle cx="20" cy="30" r="2.5" fill="#22d3ee" />
-                  </motion.g>
-
-                  {/* Core Triangle (Always visible) */}
-                  <g>
-                    <path d="M 50 40 L 60 60 L 40 60 Z" stroke="rgba(34,211,238,0.5)" strokeWidth="1.5" fill="rgba(34,211,238,0.05)" />
-                    {/* Core Nodes */}
-                    <motion.circle cx="50" cy="40" r="3.5" fill="#22d3ee" animate={{ scale: [1, 1.5, 1] }} transition={{ duration: 2, repeat: Infinity }} style={{ filter: "drop-shadow(0 0 8px #22d3ee)" }} />
-                    <circle cx="60" cy="60" r="2.5" fill="#22d3ee" />
-                    <circle cx="40" cy="60" r="2.5" fill="#22d3ee" />
-                  </g>
-
-                  {/* Energy Pulse (Expands outward to trigger the new ring) */}
-                  <motion.circle 
-                    cx="50" cy="50" r="10" 
-                    stroke="#a855f7" strokeWidth="2" fill="none"
-                    animate={{ r: [10, 45, 45], opacity: [0, 1, 0, 0] }}
-                    transition={{ duration: 6, repeat: Infinity, times: [0, 0.2, 0.35, 1] }}
-                    style={{ filter: "drop-shadow(0 0 8px #a855f7)" }}
-                  />
+                  {/* Nodes */}
+                  <circle cx="10" cy="30" r="4" fill="#34d399" className="drop-shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
+                  <circle cx="40" cy="15" r="3" fill="#34d399" />
+                  <circle cx="40" cy="45" r="3" fill="#34d399" />
+                  <motion.circle cx="80" cy="5" r="2" fill="#34d399" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: 0 }} />
+                  <motion.circle cx="80" cy="25" r="2" fill="#34d399" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: 0.3 }} />
+                  <motion.circle cx="80" cy="35" r="2" fill="#34d399" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: 0.6 }} />
+                  <motion.circle cx="80" cy="55" r="2" fill="#34d399" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: 0.9 }} />
                 </svg>
               </div>
-              {/* Removed text block */}
             </motion.div>
           </div>
         </section>
