@@ -8,7 +8,7 @@ const servicesData = {
     subtitle: 'Sitios web corporativos, tiendas e-commerce y aplicaciones web escalables.',
     description: 'En Naxus construimos ecosistemas web de alto rendimiento. No usamos plantillas lentas; desarrollamos código limpio, arquitecturas modernas y optimizadas para SEO que garantizan tiempos de carga en milisegundos y una experiencia de usuario impecable.',
     features: [
-      'Arquitectura escalable (React, Next.js)',
+      'Arquitectura escalable',
       'Optimización de motores de búsqueda (SEO Técnico)',
       'Integración con APIs y bases de datos',
       'Seguridad de nivel bancario'
@@ -127,7 +127,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                   <span className="uppercase tracking-widest text-xs">Especificaciones_Técnicas</span>
                 </div>
                 <p>{`> Status: Operational`}</p>
-                <p>{`> Frameworks: React, Next.js, Node`}</p>
+                <p>{`> Frameworks: High Performance`}</p>
                 <p>{`> Deployment: Vercel CI/CD`}</p>
                 <p className="text-emerald-400">{`> Rendimiento: 99.9% Uptime`}</p>
               </div>
