@@ -180,21 +180,22 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#d4d8c5]/5 rounded-[100%] blur-[100px] pointer-events-none z-0"></div>
 
         {/* NAVIGATION */}
-        {/* NAVIGATION */}
-        <nav className="relative z-50 flex items-center justify-between px-4 md:px-8 py-4 md:py-6 max-w-7xl mx-auto w-full border-b border-[#d4d8c5]/10">
-          <div className="flex items-center gap-2 md:gap-4">
-            <img src="/logo-transparent.svg" alt="Naxus Logo" className="w-10 h-10 md:w-16 md:h-16 object-contain scale-110" />
-            <span className="text-xl md:text-3xl font-bold tracking-[0.2em] text-[#d4d8c5] uppercase" style={{ fontFamily: 'var(--font-syncopate)' }}>Naxus</span>
-          </div>
-          <div className="hidden md:flex gap-8 text-sm font-mono uppercase tracking-widest text-gray-500">
-            <a href="#servicios" className="hover:text-[#d4d8c5] transition-colors">Servicios</a>
-            <a href="#proyectos" className="hover:text-[#d4d8c5] transition-colors">Proyectos</a>
-            <a href="#equipo" className="hover:text-[#d4d8c5] transition-colors">Equipo</a>
-          </div>
-          <a href="https://wa.me/5216183202065?text=Hola%20equipo%20Naxus%2C%20me%20interesa%20desarrollar%20un%20proyecto%20tecnol%C3%B3gico%20para%20escalar%20mi%20empresa." target="_blank" rel="noopener noreferrer" className="tech-border px-4 py-2 md:px-6 md:py-2 text-[10px] md:text-xs font-bold tracking-widest text-[#d4d8c5] uppercase bg-black/50 backdrop-blur hover:bg-[#d4d8c5] hover:text-[#11131a] transition-all">
-            Contactar
-          </a>
-        </nav>
+        <div className="w-full bg-[#12141c] relative z-50">
+          <nav className="flex items-center justify-between px-4 md:px-8 py-4 md:py-6 max-w-7xl mx-auto w-full border-b border-[#d4d8c5]/10">
+            <div className="flex items-center gap-2 md:gap-4">
+              <img src="/logo-transparent.svg" alt="Naxus Logo" className="w-10 h-10 md:w-16 md:h-16 object-contain scale-110" />
+              <span className="text-xl md:text-3xl font-bold tracking-[0.2em] text-[#d4d8c5] uppercase" style={{ fontFamily: 'var(--font-syncopate)' }}>Naxus</span>
+            </div>
+            <div className="hidden md:flex gap-8 text-sm font-mono uppercase tracking-widest text-gray-500">
+              <a href="#servicios" className="hover:text-[#d4d8c5] transition-colors">Servicios</a>
+              <a href="#proyectos" className="hover:text-[#d4d8c5] transition-colors">Proyectos</a>
+              <a href="#equipo" className="hover:text-[#d4d8c5] transition-colors">Equipo</a>
+            </div>
+            <a href="https://wa.me/5216183202065?text=Hola%20equipo%20Naxus%2C%20me%20interesa%20desarrollar%20un%20proyecto%20tecnol%C3%B3gico%20para%20escalar%20mi%20empresa." target="_blank" rel="noopener noreferrer" className="tech-border px-4 py-2 md:px-6 md:py-2 text-[10px] md:text-xs font-bold tracking-widest text-[#d4d8c5] uppercase bg-black/50 backdrop-blur hover:bg-[#d4d8c5] hover:text-[#11131a] transition-all">
+              Contactar
+            </a>
+          </nav>
+        </div>
 
         {/* CENTERED HERO SECTION */}
         <section className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center px-4 md:px-8 lg:px-12 max-w-7xl mx-auto w-full pb-12 lg:pb-0">
