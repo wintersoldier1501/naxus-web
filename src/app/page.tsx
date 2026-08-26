@@ -565,7 +565,7 @@ export default function Home() {
               {
                 step: "04",
                 title: "Deploy & Monitoreo",
-                desc: "Lanzamiento a producción en infraestructura Cloud (AWS/GCP), preparado para escalar automáticamente y monitoreo 24/7."
+                desc: "Lanzamiento a producción en infraestructura de nivel empresarial, preparado para escalar automáticamente y monitoreo 24/7."
               }
             ].map((item, index) => (
               <motion.div 
