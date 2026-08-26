@@ -16,11 +16,25 @@ const ParticleBackground = () => {
     let animationFrameId: number;
 
     const setCanvasSize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const parent = canvas.parentElement;
+      if (parent) {
+        canvas.width = parent.clientWidth;
+        canvas.height = parent.clientHeight;
+      }
     };
+    
+    // Set initial size
     setCanvasSize();
-    window.addEventListener('resize', setCanvasSize);
+
+    // Use ResizeObserver to listen for parent container size changes
+    const resizeObserver = new ResizeObserver(() => {
+      setCanvasSize();
+      init(); // Re-initialize particles when size changes so they fill the new space
+    });
+    
+    if (canvas.parentElement) {
+      resizeObserver.observe(canvas.parentElement);
+    }
 
     class Particle {
       x: number;
@@ -32,9 +46,9 @@ const ParticleBackground = () => {
       constructor() {
         this.x = Math.random() * canvas!.width;
         this.y = Math.random() * canvas!.height;
-        this.size = Math.random() * 1.5;
-        this.speedX = (Math.random() - 0.5) * 0.3;
-        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.size = Math.random() * 2 + 1; // Larger dots (1px to 3px)
+        this.speedX = (Math.random() - 0.5) * 0.6; // Slightly faster
+        this.speedY = (Math.random() - 0.5) * 0.6;
       }
 
       update() {
@@ -49,7 +63,7 @@ const ParticleBackground = () => {
 
       draw() {
         if (!ctx) return;
-        ctx.fillStyle = 'rgba(212, 216, 197, 0.4)';
+        ctx.fillStyle = 'rgba(212, 216, 197, 0.7)'; // Brighter dots
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -58,7 +72,7 @@ const ParticleBackground = () => {
 
     const init = () => {
       particlesArray = [];
-      const numberOfParticles = Math.floor((canvas!.width * canvas!.height) / 12000);
+      const numberOfParticles = Math.floor((canvas!.width * canvas!.height) / 7000); // More particles
       for (let i = 0; i < numberOfParticles; i++) {
         particlesArray.push(new Particle());
       }
@@ -75,10 +89,10 @@ const ParticleBackground = () => {
           const dy = particlesArray[i].y - particlesArray[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 100) {
+          if (distance < 120) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(212, 216, 197, ${0.15 - distance / 666})`;
-            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = `rgba(212, 216, 197, ${0.4 - distance / 300})`; // Brighter lines
+            ctx.lineWidth = 0.8;
             ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
             ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
             ctx.stroke();
@@ -92,12 +106,12 @@ const ParticleBackground = () => {
     animate();
 
     return () => {
-      window.removeEventListener('resize', setCanvasSize);
+      resizeObserver.disconnect();
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none opacity-50" />;
+  return <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none" />;
 };
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, Layers, Code2, Rocket, MonitorSmartphone, Users, ArrowUpRight, ArrowRight, Server, Activity, X, CheckCircle2, MousePointer2 } from 'lucide-react';
