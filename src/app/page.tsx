@@ -176,27 +176,27 @@ export default function Home() {
               <div className="mt-4 h-16 w-full relative">
                 <svg viewBox="0 0 100 60" className="w-full h-full overflow-visible">
                   {/* Background faint lines */}
-                  <path d="M 10 30 L 40 15" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
-                  <path d="M 10 30 L 40 45" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
-                  <path d="M 40 15 L 80 5" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
-                  <path d="M 40 15 L 80 25" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
-                  <path d="M 40 45 L 80 35" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
-                  <path d="M 40 45 L 80 55" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
+                  <path d="M 50 55 L 25 30" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
+                  <path d="M 50 55 L 75 30" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
+                  <path d="M 25 30 L 10 5" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
+                  <path d="M 25 30 L 40 5" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
+                  <path d="M 75 30 L 60 5" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
+                  <path d="M 75 30 L 90 5" stroke="rgba(52,211,153,0.1)" strokeWidth="2" />
                   
                   {/* Animated Data Packets (Paths with dash offset) */}
-                  <motion.path d="M 10 30 L 40 15 L 80 5" stroke="#34d399" strokeWidth="2" strokeDasharray="10 100" animate={{ strokeDashoffset: [100, -50] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }} style={{ filter: "drop-shadow(0 0 4px #34d399)" }} />
-                  <motion.path d="M 10 30 L 40 15 L 80 25" stroke="#34d399" strokeWidth="2" strokeDasharray="10 100" animate={{ strokeDashoffset: [100, -50] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.3 }} style={{ filter: "drop-shadow(0 0 4px #34d399)" }} />
-                  <motion.path d="M 10 30 L 40 45 L 80 35" stroke="#34d399" strokeWidth="2" strokeDasharray="10 100" animate={{ strokeDashoffset: [100, -50] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.6 }} style={{ filter: "drop-shadow(0 0 4px #34d399)" }} />
-                  <motion.path d="M 10 30 L 40 45 L 80 55" stroke="#34d399" strokeWidth="2" strokeDasharray="10 100" animate={{ strokeDashoffset: [100, -50] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.9 }} style={{ filter: "drop-shadow(0 0 4px #34d399)" }} />
+                  <motion.path d="M 50 55 L 25 30 L 10 5" stroke="#34d399" strokeWidth="2" strokeDasharray="10 100" animate={{ strokeDashoffset: [100, -50] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }} style={{ filter: "drop-shadow(0 0 4px #34d399)" }} />
+                  <motion.path d="M 50 55 L 25 30 L 40 5" stroke="#34d399" strokeWidth="2" strokeDasharray="10 100" animate={{ strokeDashoffset: [100, -50] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.3 }} style={{ filter: "drop-shadow(0 0 4px #34d399)" }} />
+                  <motion.path d="M 50 55 L 75 30 L 60 5" stroke="#34d399" strokeWidth="2" strokeDasharray="10 100" animate={{ strokeDashoffset: [100, -50] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.6 }} style={{ filter: "drop-shadow(0 0 4px #34d399)" }} />
+                  <motion.path d="M 50 55 L 75 30 L 90 5" stroke="#34d399" strokeWidth="2" strokeDasharray="10 100" animate={{ strokeDashoffset: [100, -50] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear", delay: 0.9 }} style={{ filter: "drop-shadow(0 0 4px #34d399)" }} />
 
                   {/* Nodes */}
-                  <circle cx="10" cy="30" r="4" fill="#34d399" className="drop-shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
-                  <circle cx="40" cy="15" r="3" fill="#34d399" />
-                  <circle cx="40" cy="45" r="3" fill="#34d399" />
-                  <motion.circle cx="80" cy="5" r="2" fill="#34d399" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: 0 }} />
-                  <motion.circle cx="80" cy="25" r="2" fill="#34d399" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: 0.3 }} />
-                  <motion.circle cx="80" cy="35" r="2" fill="#34d399" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: 0.6 }} />
-                  <motion.circle cx="80" cy="55" r="2" fill="#34d399" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: 0.9 }} />
+                  <circle cx="50" cy="55" r="4" fill="#34d399" className="drop-shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
+                  <circle cx="25" cy="30" r="3" fill="#34d399" />
+                  <circle cx="75" cy="30" r="3" fill="#34d399" />
+                  <motion.circle cx="10" cy="5" r="2" fill="#34d399" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: 0 }} />
+                  <motion.circle cx="40" cy="5" r="2" fill="#34d399" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: 0.3 }} />
+                  <motion.circle cx="60" cy="5" r="2" fill="#34d399" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: 0.6 }} />
+                  <motion.circle cx="90" cy="5" r="2" fill="#34d399" animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 1, repeat: Infinity, delay: 0.9 }} />
                 </svg>
               </div>
             </motion.div>
