@@ -545,7 +545,7 @@ export default function Home() {
             </div>
             <h4 className="text-xl font-bold">Socio Fundador</h4>
             <p className="text-[#d4d8c5] text-sm font-mono uppercase tracking-wider mb-2">CEO & Lead Architect</p>
-            <span className="text-gray-400 font-light">Sergio Ibarra</span>
+            <span className="text-gray-400 font-light">Sergio M.</span>
           </div>
           
           {/* Team Member 2 */}
