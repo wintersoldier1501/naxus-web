@@ -434,7 +434,7 @@ export default function Home() {
       </section>
 
       {/* 3. PROYECTOS (PORTAFOLIO) */}
-      <section id="proyectos" className="py-32 bg-black/50 border-y border-[#d4d8c5]/10 relative z-10">
+      <section id="proyectos" className="py-32 bg-black/50 border-y border-[#d4d8c5]/10 relative z-10 animated-dots">
         <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.7 }} className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
@@ -650,6 +650,15 @@ export default function Home() {
         @keyframes marquee {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
+        }
+        @keyframes moveDots {
+          0% { background-position: 0 0; }
+          100% { background-position: 32px 32px; }
+        }
+        .animated-dots {
+          background-image: radial-gradient(rgba(212, 216, 197, 0.15) 1.5px, transparent 1.5px);
+          background-size: 32px 32px;
+          animation: moveDots 4s linear infinite;
         }
       `}} />
       {/* PROJECT MODAL */}
