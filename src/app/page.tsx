@@ -527,8 +527,70 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
+      {/* 4. METODOLOGÍA (PROCESO) */}
+      <section className="py-24 relative z-10 px-6">
+        <div className="max-w-4xl mx-auto">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.7 }} className="mb-16">
+            <h2 className="text-sm font-mono text-[#d4d8c5] tracking-widest uppercase mb-2">// Ingeniería de Precisión</h2>
+            <h3 className="text-4xl md:text-5xl font-bold">Nuestra Metodología.</h3>
+          </motion.div>
 
-      {/* 4. EQUIPO */}
+          <div className="relative border-l border-gray-800 ml-4 md:ml-6">
+            {/* Animated Laser Line */}
+            <motion.div 
+              className="absolute top-0 left-[-1px] w-[2px] bg-gradient-to-b from-emerald-400 to-cyan-400"
+              initial={{ height: 0 }}
+              whileInView={{ height: "100%" }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+              viewport={{ once: true, margin: "-100px" }}
+            />
+            
+            {/* Steps */}
+            {[
+              {
+                step: "01",
+                title: "Discovery & Arquitectura",
+                desc: "Análisis profundo de requerimientos, diseño de bases de datos y selección del stack tecnológico óptimo para tu visión."
+              },
+              {
+                step: "02",
+                title: "Desarrollo Ágil",
+                desc: "Ingeniería de software con sprints rápidos, código limpio y revisiones continuas para asegurar el máximo rendimiento."
+              },
+              {
+                step: "03",
+                title: "QA & Ciberseguridad",
+                desc: "Pruebas de estrés automatizadas, auditorías de vulnerabilidades y un control de calidad exhaustivo antes de salir a la luz."
+              },
+              {
+                step: "04",
+                title: "Deploy & Monitoreo",
+                desc: "Lanzamiento a producción en infraestructura Cloud (AWS/GCP), preparado para escalar automáticamente y monitoreo 24/7."
+              }
+            ].map((item, index) => (
+              <motion.div 
+                key={index}
+                className="mb-12 last:mb-0 relative pl-8 md:pl-12"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 + 0.3 }}
+                viewport={{ once: true, margin: "-100px" }}
+              >
+                {/* Glowing Node */}
+                <div className="absolute top-1 -left-[5px] w-[10px] h-[10px] rounded-full bg-[#12141c] border-2 border-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.5)] z-10" />
+                
+                <span className="text-xs font-mono text-emerald-400 tracking-widest mb-1 block">FASE {item.step}</span>
+                <h4 className="text-xl md:text-2xl font-bold mb-3 text-[#d4d8c5]">{item.title}</h4>
+                <p className="text-gray-400 leading-relaxed text-sm md:text-base">
+                  {item.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. EQUIPO */}
       <section id="equipo" className="py-32 max-w-7xl mx-auto px-6 relative z-10">
         <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.7 }}>
           <div className="text-center mb-16">
