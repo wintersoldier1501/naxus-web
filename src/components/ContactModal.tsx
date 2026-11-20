@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, Mail, Copy, Check, Terminal } from 'lucide-react';
 import { CONTACT_EMAIL, buildWhatsAppUrl } from '@/lib/data';
@@ -33,6 +34,11 @@ export function ContactModal({
   const [details, setDetails] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
   const [copied, setCopied] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -112,11 +118,13 @@ export function ContactModal({
     }
   };
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <div
-          className="fixed inset-0 z-[110] flex items-center sm:items-start justify-center p-4 sm:p-10 overflow-y-auto"
+          className="fixed inset-0 z-[110] flex items-center sm:items-start justify-center p-4 sm:p-10 overflow-y-auto text-left"
           onClick={onClose}
           role="dialog"
           aria-modal="true"
@@ -134,7 +142,7 @@ export function ContactModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-xl bg-[#12141c] tech-border rounded-xl p-6 sm:p-8 shadow-2xl z-10 my-auto"
+            className="relative w-full max-w-xl bg-[#12141c] tech-border rounded-xl p-6 sm:p-8 shadow-2xl z-10 my-auto text-left"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -293,6 +301,7 @@ export function ContactModal({
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
