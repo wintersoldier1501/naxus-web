@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import {
   Terminal,
   Layers,
@@ -12,6 +13,8 @@ import {
   X,
   CheckCircle2,
   Menu,
+  ChevronDown,
+  ShieldCheck,
 } from 'lucide-react';
 import { ParticleBackground } from '@/components/ParticleBackground';
 import { ContactModal } from '@/components/ContactModal';
@@ -20,6 +23,8 @@ import {
   projectColorStyles,
   servicesData,
   serviceSlugs,
+  ENGINEERING_GUARANTEES,
+  FAQ_ITEMS,
   buildWhatsAppUrl,
   CONTACT_EMAIL,
 } from '@/lib/data';
@@ -48,20 +53,64 @@ const METHODOLOGY_STEPS = [
 ];
 
 const NAV_LINKS = [
-  { href: '#servicios', label: 'Servicios' },
-  { href: '#proyectos', label: 'Proyectos' },
-  { href: '#metodologia', label: 'Metodología' },
-  { href: '#equipo', label: 'Equipo' },
+  { id: 'servicios', href: '#servicios', label: 'Servicios' },
+  { id: 'proyectos', href: '#proyectos', label: 'Proyectos' },
+  { id: 'metodologia', href: '#metodologia', label: 'Metodología' },
+  { id: 'equipo', href: '#equipo', label: 'Equipo' },
 ];
 
 export default function Home() {
   const [activeProject, setActiveProject] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('');
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [contactModal, setContactModal] = useState<{
     open: boolean;
     service?: string;
     context?: string;
   }>({ open: false });
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 180,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  useEffect(() => {
+    const sectionIds = NAV_LINKS.map((l) => l.id);
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible.length > 0) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      { rootMargin: '-30% 0px -55% 0px', threshold: [0, 0.2, 0.5] }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+
+    const handleTopCheck = () => {
+      if (window.scrollY < 240) {
+        setActiveSection('');
+      }
+    };
+    window.addEventListener('scroll', handleTopCheck, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleTopCheck);
+    };
+  }, []);
 
   useEffect(() => {
     if (!activeProject) return;
@@ -115,13 +164,16 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#12141c] text-white selection:bg-[#d4d8c5]/30 font-sans overflow-x-clip">
-      {/* STICKY NAVIGATION WITH SOLID BACKGROUND */}
+      {/* STICKY NAVIGATION WITH SOLID BACKGROUND & SCROLL PROGRESS */}
       <header className="sticky top-0 z-50 w-full bg-[#12141c] border-b border-[#d4d8c5]/10">
         <nav className="flex items-center justify-between px-4 md:px-8 py-4 md:py-5 max-w-7xl mx-auto w-full">
           <a href="#" className="flex items-center gap-2 md:gap-4">
-            <img
-              src="/logo-transparent.svg"
+            <Image
+              src="/logo-mark.png"
               alt="Naxus Logo"
+              width={56}
+              height={56}
+              priority
               className="w-10 h-10 md:w-14 md:h-14 object-contain scale-110"
             />
             <span
@@ -132,16 +184,26 @@ export default function Home() {
             </span>
           </a>
 
-          <div className="hidden md:flex gap-8 text-sm font-mono uppercase tracking-widest text-gray-400">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="hover:text-[#d4d8c5] transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+          <div className="hidden md:flex gap-8 text-sm font-mono uppercase tracking-widest">
+            {NAV_LINKS.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={`relative py-1 transition-colors flex items-center gap-2 ${
+                    isActive
+                      ? 'text-[#d4d8c5]'
+                      : 'text-gray-400 hover:text-[#d4d8c5]'
+                  }`}
+                >
+                  {isActive && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.9)]" />
+                  )}
+                  {link.label}
+                </a>
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-3">
@@ -169,6 +231,13 @@ export default function Home() {
           </div>
         </nav>
 
+        {/* Scroll Progress Hairline */}
+        <motion.div
+          style={{ scaleX }}
+          aria-hidden="true"
+          className="h-[2px] w-full bg-gradient-to-r from-emerald-400 via-cyan-400 to-[#d4d8c5] origin-left"
+        />
+
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
@@ -179,16 +248,33 @@ export default function Home() {
               className="md:hidden bg-[#12141c] border-t border-[#d4d8c5]/10 overflow-hidden"
             >
               <div className="px-4 py-5 flex flex-col gap-3">
-                {NAV_LINKS.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="py-2 px-3 text-sm font-mono uppercase tracking-widest text-gray-300 hover:text-[#d4d8c5] hover:bg-white/5 rounded-sm transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                ))}
+                {NAV_LINKS.map((link) => {
+                  const isActive = activeSection === link.id;
+                  return (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`py-2 px-3 text-sm font-mono uppercase tracking-widest rounded-sm transition-colors flex items-center gap-2 ${
+                        isActive
+                          ? 'text-[#d4d8c5] bg-white/5'
+                          : 'text-gray-300 hover:text-[#d4d8c5] hover:bg-white/5'
+                      }`}
+                    >
+                      {isActive && (
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      )}
+                      {link.label}
+                    </a>
+                  );
+                })}
+                <a
+                  href="#faq"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="py-2 px-3 text-sm font-mono uppercase tracking-widest text-gray-300 hover:text-[#d4d8c5] hover:bg-white/5 rounded-sm transition-colors"
+                >
+                  Preguntas Frecuentes
+                </a>
                 <button
                   type="button"
                   onClick={() => openContact()}
@@ -269,7 +355,6 @@ export default function Home() {
 
           {/* ANIMATION COLUMN — CLEANLY STACKED ON MOBILE, FLOATING ON DESKTOP */}
           <div className="relative w-full flex flex-col gap-5 mt-4 lg:mt-0 lg:block lg:h-[500px]">
-            {/* Glowing backdrop */}
             <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-purple-500/5 to-transparent rounded-full blur-3xl opacity-50 animate-pulse pointer-events-none" />
 
             {/* Main Terminal Window */}
@@ -473,9 +558,9 @@ export default function Home() {
                 {[
                   'DESARROLLO WEB',
                   'SISTEMAS A MEDIDA',
+                  'IA & CLOUD',
                   'DISEÑO UI/UX',
                   'E-COMMERCE',
-                  'APPS MÓVILES',
                   'SOFTWARE EMPRESARIAL',
                 ].map((service) => (
                   <span
@@ -491,7 +576,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 2. SERVICIOS */}
+      {/* 2. SERVICIOS (2x2 GRID) */}
       <section
         id="servicios"
         className="py-24 md:py-32 max-w-7xl mx-auto px-6 relative z-10"
@@ -511,7 +596,7 @@ export default function Home() {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Card 1: Desarrollo Web */}
             <Link
               href={`/servicios/${serviceSlugs[0]}`}
@@ -641,9 +726,85 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* Card 3: Diseño UI/UX */}
+            {/* Card 3: IA & Arquitectura Cloud */}
             <Link
               href={`/servicios/${serviceSlugs[2]}`}
+              onMouseMove={handleCardMouseMove}
+              className="tech-border bg-[#12141c] p-8 hover:bg-[#d4d8c5]/5 transition-colors group cursor-pointer flex flex-col h-full relative"
+            >
+              <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                <div className="spotlight-glow absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="h-16 mb-8 flex items-center">
+                  <div className="w-16 h-16 relative border border-white/10 rounded bg-black/40 p-2 flex items-center justify-center shadow-[0_0_15px_rgba(52,211,153,0.12)] group-hover:shadow-[0_0_20px_rgba(52,211,153,0.3)] transition-all">
+                    <svg viewBox="0 0 48 48" className="w-full h-full overflow-visible">
+                      <line x1="10" y1="14" x2="24" y2="24" stroke="rgba(34,211,238,0.45)" strokeWidth="1.5" />
+                      <line x1="10" y1="34" x2="24" y2="24" stroke="rgba(52,211,153,0.45)" strokeWidth="1.5" />
+                      <line x1="38" y1="14" x2="24" y2="24" stroke="rgba(168,85,247,0.45)" strokeWidth="1.5" />
+                      <line x1="38" y1="34" x2="24" y2="24" stroke="rgba(34,211,238,0.45)" strokeWidth="1.5" />
+                      <motion.circle
+                        cx="24"
+                        cy="24"
+                        r="5"
+                        fill="#34d399"
+                        animate={{ scale: [1, 1.25, 1], opacity: [0.8, 1, 0.8] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      />
+                      <motion.circle
+                        cx="10"
+                        cy="14"
+                        r="3"
+                        fill="#22d3ee"
+                        animate={{ opacity: [0.4, 1, 0.4] }}
+                        transition={{ duration: 1.8, repeat: Infinity, delay: 0 }}
+                      />
+                      <motion.circle
+                        cx="10"
+                        cy="34"
+                        r="3"
+                        fill="#34d399"
+                        animate={{ opacity: [0.4, 1, 0.4] }}
+                        transition={{ duration: 1.8, repeat: Infinity, delay: 0.4 }}
+                      />
+                      <motion.circle
+                        cx="38"
+                        cy="14"
+                        r="3"
+                        fill="#a855f7"
+                        animate={{ opacity: [0.4, 1, 0.4] }}
+                        transition={{ duration: 1.8, repeat: Infinity, delay: 0.8 }}
+                      />
+                      <motion.circle
+                        cx="38"
+                        cy="34"
+                        r="3"
+                        fill="#22d3ee"
+                        animate={{ opacity: [0.4, 1, 0.4] }}
+                        transition={{ duration: 1.8, repeat: Infinity, delay: 1.2 }}
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                <h4 className="text-xl font-bold mb-4 uppercase tracking-wide">
+                  {servicesData['ia-y-arquitectura-cloud'].title}
+                </h4>
+                <p className="text-gray-400 leading-relaxed font-light mb-8">
+                  Inteligencia artificial aplicada, visión por computadora e
+                  infraestructura en la nube diseñada para automatizar y escalar
+                  sin interrupciones.
+                </p>
+                <span className="mt-auto text-xs font-mono text-[#d4d8c5] uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">
+                  Explorar <ArrowRight className="w-4 h-4" />
+                </span>
+              </div>
+            </Link>
+
+            {/* Card 4: Diseño UI/UX */}
+            <Link
+              href={`/servicios/${serviceSlugs[3]}`}
               onMouseMove={handleCardMouseMove}
               className="tech-border bg-[#12141c] p-8 hover:bg-[#d4d8c5]/5 transition-colors group cursor-pointer flex flex-col h-full relative"
             >
@@ -744,10 +905,12 @@ export default function Home() {
 
               <div className="relative z-10 w-full aspect-video bg-[#1a1d27] overflow-hidden rounded-sm border border-white/10">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent z-10 pointer-events-none" />
-                <img
+                <Image
                   src="/project-eyemax.png"
                   alt="Eyemax AI System"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute bottom-4 left-4 z-20 flex flex-wrap gap-2">
                   <span className="px-3 py-1 bg-[#12141c]/85 backdrop-blur-md text-cyan-400 text-xs font-mono uppercase tracking-wider border border-cyan-500/35 rounded-full">
@@ -862,10 +1025,12 @@ export default function Home() {
 
               <div className="relative z-10 order-1 md:order-2 w-full aspect-video bg-[#1a1d27] overflow-hidden rounded-sm border border-white/10">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent z-10 pointer-events-none" />
-                <img
+                <Image
                   src="/project-zeus.png"
                   alt="PRO-ZEUS Dashboard"
-                  className="w-full h-full object-cover object-left-top group-hover:scale-105 transition-transform duration-700"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover object-left-top group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute bottom-4 right-4 z-20 flex flex-wrap gap-2">
                   <span className="px-3 py-1 bg-[#12141c]/85 backdrop-blur-md text-emerald-400 text-xs font-mono uppercase tracking-wider border border-emerald-500/35 rounded-full">
@@ -890,10 +1055,12 @@ export default function Home() {
 
               <div className="relative z-10 w-full aspect-video bg-[#1a1d27] overflow-hidden rounded-sm border border-white/10">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent z-10 pointer-events-none" />
-                <img
+                <Image
                   src="/project-biosalud.png"
                   alt="Biosalud Web Platform"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute bottom-4 left-4 z-20 flex flex-wrap gap-2">
                   <span className="px-3 py-1 bg-[#12141c]/85 backdrop-blur-md text-emerald-400 text-xs font-mono uppercase tracking-wider border border-emerald-500/35 rounded-full">
@@ -1045,9 +1212,11 @@ export default function Home() {
             {/* Team Member 1 */}
             <div className="flex flex-col items-center text-center group">
               <div className="w-40 h-40 tech-border bg-[#1a1d27] rounded-full mb-6 flex items-center justify-center overflow-hidden relative">
-                <img
+                <Image
                   src="/ceo-profile.png"
                   alt="Sergio M. - CEO & DevOps Architect"
+                  width={160}
+                  height={160}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 border-2 border-[#d4d8c5]/10 rounded-full pointer-events-none group-hover:border-cyan-400/50 transition-colors" />
@@ -1062,9 +1231,11 @@ export default function Home() {
             {/* Team Member 2 */}
             <div className="flex flex-col items-center text-center group">
               <div className="w-40 h-40 tech-border bg-[#1a1d27] rounded-full mb-6 flex items-center justify-center overflow-hidden relative">
-                <img
+                <Image
                   src="/roberto.png"
                   alt="Roberto Sariñana - Asesor Técnico"
+                  width={160}
+                  height={160}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 border-2 border-[#d4d8c5]/10 rounded-full pointer-events-none group-hover:border-cyan-400/50 transition-colors" />
@@ -1079,9 +1250,11 @@ export default function Home() {
             {/* Team Member 3 */}
             <div className="flex flex-col items-center text-center group sm:col-span-2 md:col-span-1">
               <div className="w-40 h-40 tech-border bg-[#1a1d27] rounded-full mb-6 flex items-center justify-center overflow-hidden relative">
-                <img
+                <Image
                   src="/paulina-profile.png"
                   alt="Paulina López - COO"
+                  width={160}
+                  height={160}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 border-2 border-[#d4d8c5]/10 rounded-full pointer-events-none group-hover:border-cyan-400/50 transition-colors" />
@@ -1094,6 +1267,100 @@ export default function Home() {
             </div>
           </div>
         </motion.div>
+      </section>
+
+      {/* 6. GARANTÍAS DE INGENIERÍA & FAQ */}
+      <section
+        id="faq"
+        className="py-24 md:py-28 max-w-7xl mx-auto px-6 relative z-10 border-t border-[#d4d8c5]/10"
+      >
+        {/* Guarantees Strip */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+          {ENGINEERING_GUARANTEES.map((g) => (
+            <div
+              key={g.code}
+              className="tech-border bg-[#12141c]/90 p-6 flex flex-col gap-3"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-mono text-emerald-400 tracking-widest uppercase">
+                  GARANTÍA // {g.code}
+                </span>
+                <ShieldCheck className="w-4 h-4 text-cyan-400" />
+              </div>
+              <h4 className="text-lg font-bold text-[#d4d8c5]">{g.title}</h4>
+              <p className="text-sm text-gray-400 font-light leading-relaxed">
+                {g.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Collapsible FAQ */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="lg:col-span-5">
+            <h2 className="text-sm font-mono text-[#d4d8c5] tracking-widest uppercase mb-2">
+              // Resolviendo Dudas
+            </h2>
+            <h3 className="text-4xl md:text-5xl font-bold mb-6">
+              Preguntas Frecuentes.
+            </h3>
+            <p className="text-gray-400 font-light leading-relaxed mb-8 max-w-md">
+              Transparencia técnica y comercial desde el primer contacto. Si tu
+              proyecto tiene requerimientos especiales, lo revisamos directo en
+              llamada.
+            </p>
+            <button
+              type="button"
+              onClick={() => openContact()}
+              className="inline-flex items-center gap-2 text-xs font-mono text-cyan-400 hover:text-cyan-300 uppercase tracking-widest transition-colors cursor-pointer"
+            >
+              ¿Tienes otra duda específica? <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="lg:col-span-7 space-y-3">
+            {FAQ_ITEMS.map((item, idx) => {
+              const isOpen = openFaq === idx;
+              return (
+                <div
+                  key={item.q}
+                  className="border border-white/10 bg-[#0d0f16]/90 rounded-sm overflow-hidden transition-colors hover:border-[#d4d8c5]/30"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaq(isOpen ? null : idx)}
+                    aria-expanded={isOpen}
+                    className="w-full px-5 py-4 text-left flex items-center justify-between gap-4 cursor-pointer"
+                  >
+                    <span className="text-sm md:text-base font-semibold text-[#d4d8c5]">
+                      {item.q}
+                    </span>
+                    <ChevronDown
+                      className={`w-4 h-4 text-emerald-400 shrink-0 transition-transform duration-200 ${
+                        isOpen ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.22 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-5 pb-5 pt-1 text-sm text-gray-400 font-light leading-relaxed border-t border-white/5">
+                          {item.a}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </section>
 
       {/* TERMINAL CTA SECTION */}
@@ -1189,9 +1456,11 @@ export default function Home() {
       <footer className="border-t border-[#d4d8c5]/10 bg-black py-16 relative z-10">
         <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-4">
-            <img
-              src="/logo-transparent.svg"
+            <Image
+              src="/logo-mark.png"
               alt="Naxus Logo"
+              width={48}
+              height={48}
               className="w-12 h-12 object-contain scale-110 opacity-80"
             />
             <span
@@ -1202,7 +1471,7 @@ export default function Home() {
             </span>
           </div>
 
-          <div className="flex flex-col items-center gap-4 text-center">
+          <div className="flex flex-col items-center gap-3 text-center">
             <div className="flex flex-wrap justify-center gap-5 text-xs font-mono uppercase tracking-widest text-gray-500">
               {NAV_LINKS.map((link) => (
                 <a
@@ -1213,10 +1482,18 @@ export default function Home() {
                   {link.label}
                 </a>
               ))}
+              <a href="#faq" className="hover:text-[#d4d8c5] transition-colors">
+                FAQ
+              </a>
             </div>
             <p className="text-gray-500 text-xs font-mono">
-              © {new Date().getFullYear()} Naxus Software Engineering. · All
-              systems operational.
+              © {new Date().getFullYear()} Naxus Software Engineering. ·{' '}
+              <Link
+                href="/aviso-de-privacidad"
+                className="hover:text-[#d4d8c5] underline underline-offset-4 transition-colors"
+              >
+                Aviso de Privacidad
+              </Link>
             </p>
           </div>
 
@@ -1278,10 +1555,12 @@ export default function Home() {
               {/* Modal Header Image */}
               <div className="w-full h-64 sm:h-80 relative bg-[#1a1d27] shrink-0">
                 <div className="absolute inset-0 bg-gradient-to-t from-[#12141c] via-[#12141c]/60 to-black/25 z-10" />
-                <img
+                <Image
                   src={activeProjectData.image}
                   alt={activeProjectData.title}
-                  className="w-full h-full object-cover object-top opacity-85"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 896px"
+                  className="object-cover object-top opacity-85"
                 />
                 <div className="absolute bottom-6 left-6 sm:left-10 z-20">
                   <span
@@ -1374,8 +1653,9 @@ export default function Home() {
                       type="button"
                       onClick={() => {
                         const title = activeProjectData.title;
+                        const defaultSvc = activeProjectData.defaultService;
                         setActiveProject(null);
-                        openContact('Software a Medida', `Proyecto similar a ${title}`);
+                        openContact(defaultSvc, `Proyecto similar a ${title}`);
                       }}
                       className="w-full py-3 px-4 bg-[#d4d8c5] text-[#11131a] font-bold uppercase tracking-widest text-xs hover:bg-white transition-all rounded-sm flex items-center justify-center gap-2 cursor-pointer"
                     >

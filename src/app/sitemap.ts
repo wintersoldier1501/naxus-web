@@ -17,5 +17,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
+    {
+      url: 'https://naxus.com.mx/aviso-de-privacidad',
+      lastModified,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
   ];
 }

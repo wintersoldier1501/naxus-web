@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, ArrowRight, CheckCircle2, Code2, Sparkles } from 'lucide-react';
 import {
   servicesData,
@@ -80,9 +81,12 @@ export default async function ServicePage({
       <header className="sticky top-0 z-50 w-full bg-[#12141c] border-b border-[#d4d8c5]/10">
         <nav className="flex items-center justify-between px-4 md:px-8 py-4 md:py-5 max-w-7xl mx-auto w-full">
           <Link href="/" className="flex items-center gap-2 md:gap-4">
-            <img
-              src="/logo-transparent.svg"
+            <Image
+              src="/logo-mark.png"
               alt="Naxus Logo"
+              width={48}
+              height={48}
+              priority
               className="w-10 h-10 md:w-12 md:h-12 object-contain scale-110"
             />
             <span
@@ -206,7 +210,7 @@ export default async function ServicePage({
             <h3 className="text-sm font-mono text-[#d4d8c5] uppercase tracking-widest mb-6">
               // Explorar otros servicios
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {otherServices.map((other) => (
                 <Link
                   key={other.slug}
@@ -232,7 +236,13 @@ export default async function ServicePage({
       {/* FOOTER */}
       <footer className="border-t border-[#d4d8c5]/10 bg-black py-10 relative z-10 text-center">
         <p className="text-gray-500 text-xs font-mono uppercase tracking-widest">
-          © {new Date().getFullYear()} Naxus Software Engineering.
+          © {new Date().getFullYear()} Naxus Software Engineering. ·{' '}
+          <Link
+            href="/aviso-de-privacidad"
+            className="hover:text-[#d4d8c5] underline underline-offset-4 transition-colors"
+          >
+            Aviso de Privacidad
+          </Link>
         </p>
       </footer>
     </main>

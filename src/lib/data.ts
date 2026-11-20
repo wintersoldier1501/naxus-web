@@ -45,6 +45,7 @@ export interface ProjectItem {
   title: string;
   tag: string;
   color: ProjectColorKey;
+  defaultService: string;
   image: string;
   overview: string;
   highlights: string[];
@@ -58,6 +59,7 @@ export const projectsData: Record<string, ProjectItem> = {
     title: 'EYEMAX',
     tag: 'Computer Vision & Edge AI',
     color: 'cyan',
+    defaultService: 'IA & Arquitectura Cloud',
     image: '/project-eyemax.png',
     overview:
       'Eyemax es un sistema inteligente de punto de venta y escaneo visual diseñado para la industria de la joyería. Su objetivo principal es resolver el problema de la identificación manual de inventario: permite a los vendedores tomar una fotografía de cualquier pieza de joyería y, en cuestión de segundos, la inteligencia artificial identifica el modelo exacto, cruzando la información con el catálogo y existencias en tiempo real.',
@@ -91,6 +93,7 @@ export const projectsData: Record<string, ProjectItem> = {
     title: 'PRO-ZEUS',
     tag: 'AI Cloud Architect',
     color: 'purple',
+    defaultService: 'IA & Arquitectura Cloud',
     image: '/project-zeus.png',
     overview:
       'PRO-ZEUS es una plataforma SaaS innovadora diseñada para revolucionar el mundo de DevOps y la arquitectura en la nube. A través de un motor de Inteligencia Artificial integrado, la plataforma permite a los usuarios diseñar, visualizar y desplegar infraestructuras de grado empresarial utilizando simples comandos en lenguaje natural.',
@@ -124,6 +127,7 @@ export const projectsData: Record<string, ProjectItem> = {
     title: 'BIOSALUD',
     tag: 'Web App Clínica',
     color: 'amber',
+    defaultService: 'Desarrollo Web',
     image: '/project-biosalud.png',
     overview:
       'Desarrollo de una aplicación web multipágina (SPA) de diseño premium para una profesional de la nutrición clínica. El objetivo principal fue digitalizar y automatizar el flujo de captación de pacientes, pasando de un modelo tradicional a una clínica virtual moderna con agendamiento automatizado.',
@@ -159,8 +163,17 @@ export interface ServiceSpec {
   accent?: boolean;
 }
 
+export const serviceSlugs = [
+  'desarrollo-web',
+  'desarrollo-de-software',
+  'ia-y-arquitectura-cloud',
+  'diseno-ui-ux',
+] as const;
+
+export type ServiceSlug = (typeof serviceSlugs)[number];
+
 export interface ServiceItem {
-  slug: 'desarrollo-web' | 'desarrollo-de-software' | 'diseno-ui-ux';
+  slug: ServiceSlug;
   title: string;
   shortDesc: string;
   subtitle: string;
@@ -171,14 +184,6 @@ export interface ServiceItem {
   idealFor: string[];
   specs: ServiceSpec[];
 }
-
-export const serviceSlugs = [
-  'desarrollo-web',
-  'desarrollo-de-software',
-  'diseno-ui-ux',
-] as const;
-
-export type ServiceSlug = (typeof serviceSlugs)[number];
 
 export const servicesData: Record<ServiceSlug, ServiceItem> = {
   'desarrollo-web': {
@@ -237,6 +242,35 @@ export const servicesData: Record<ServiceSlug, ServiceItem> = {
       { label: 'Confiabilidad', value: 'Alta Disponibilidad 24/7', accent: true },
     ],
   },
+  'ia-y-arquitectura-cloud': {
+    slug: 'ia-y-arquitectura-cloud',
+    title: 'IA & Arquitectura Cloud',
+    shortDesc:
+      'Soluciones con inteligencia artificial, automatización avanzada e infraestructura cloud escalable.',
+    subtitle:
+      'Inteligencia artificial aplicada, visión por computadora e infraestructura escalable de nivel empresarial.',
+    description:
+      'Diseñamos arquitecturas inteligentes y entornos en la nube pensados para operar sin interrupciones. Desde motores de visión por computadora y asistentes internos con IA hasta despliegues automatizados listos para escalar con tu operación.',
+    defaultProjectType: 'IA & Arquitectura Cloud',
+    ctaLabel: 'Cotizar IA & Cloud',
+    features: [
+      'Integración de modelos de IA y visión por computadora',
+      'Automatización inteligente de flujos y análisis de datos',
+      'Arquitectura Cloud resiliente y autoescalable',
+      'Despliegue continuo, ciberseguridad y monitoreo 24/7',
+    ],
+    idealFor: [
+      'Empresas que quieren incorporar visión artificial o automatización con IA en su operación diaria.',
+      'Plataformas con alto crecimiento que requieren infraestructura estable, segura y sin caídas.',
+      'Equipos que buscan modernizar sistemas legados y automatizar despliegues en la nube.',
+    ],
+    specs: [
+      { label: 'Status', value: 'Operational' },
+      { label: 'Arquitectura', value: 'Cloud Native & IA Aplicada' },
+      { label: 'Seguridad', value: 'Encriptación & Alta Resiliencia' },
+      { label: 'Escalamiento', value: 'Auto-Scaling 24/7', accent: true },
+    ],
+  },
   'diseno-ui-ux': {
     slug: 'diseno-ui-ux',
     title: 'Diseño UI/UX',
@@ -265,3 +299,44 @@ export const servicesData: Record<ServiceSlug, ServiceItem> = {
     ],
   },
 };
+
+export const ENGINEERING_GUARANTEES = [
+  {
+    code: '01',
+    title: 'Código 100% Propietario',
+    desc: 'Al concluir el proyecto, el repositorio y la propiedad intelectual pertenecen por completo a tu empresa.',
+  },
+  {
+    code: '02',
+    title: 'Entregas Demostrables',
+    desc: 'Avances visibles en cada sprint con demos reales en entornos de prueba, sin cajas negras ni sorpresas.',
+  },
+  {
+    code: '03',
+    title: 'Arquitectura Sin Plantillas',
+    desc: 'Ingeniería construida a la medida de tu operación para garantizar velocidad, seguridad y escalabilidad.',
+  },
+];
+
+export const FAQ_ITEMS = [
+  {
+    q: '¿El código fuente y la propiedad intelectual quedan a nombre de mi empresa?',
+    a: 'Sí. Una vez liquidadas las entregas pactadas, todo el código fuente, bases de datos y activos digitales son 100% propiedad de tu empresa, sin licencias ocultas ni ataduras.',
+  },
+  {
+    q: '¿Cómo cotizan un proyecto y cuál es el proceso para arrancar?',
+    a: 'Iniciamos con una sesión breve de Discovery sin costo para entender tu operación y objetivos. Con eso definimos alcance cerrado, arquitectura recomendada, cronograma por fases e inversión exacta.',
+  },
+  {
+    q: '¿En cuánto tiempo pueden lanzar una primera versión funcional?',
+    a: 'Depende del alcance: sitios web corporativos y plataformas de captación se entregan en pocas semanas, mientras que sistemas a medida o productos SaaS avanzan por sprints cortos con demos funcionales desde el primer mes.',
+  },
+  {
+    q: '¿Ofrecen soporte, mantenimiento y evolución después del lanzamiento?',
+    a: 'Sí. Contamos con planes de soporte técnico, monitoreo continuo de infraestructura y evolución de nuevas funcionalidades para que tu plataforma nunca se quede atrás conforme crece tu negocio.',
+  },
+  {
+    q: '¿Trabajan con empresas en cualquier parte de México o el extranjero?',
+    a: 'Sí. Operamos de forma 100% remota con clientes en todo México y el extranjero, manteniendo comunicación directa con el equipo técnico y revisiones semanales de avance.',
+  },
+];

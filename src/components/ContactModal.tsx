@@ -9,6 +9,7 @@ import { CONTACT_EMAIL, buildWhatsAppUrl } from '@/lib/data';
 const PROJECT_TYPES = [
   'Desarrollo Web',
   'Software a Medida',
+  'IA & Arquitectura Cloud',
   'Diseño UI/UX',
   'App Móvil / Otro',
 ];
