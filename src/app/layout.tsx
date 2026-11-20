@@ -24,10 +24,14 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://naxus.com.mx'),
+  alternates: {
+    canonical: '/',
+  },
   title: "Naxus | Desarrollo y Arquitectura de Software",
   description: "Materializamos cualquier idea en ecosistemas digitales de alto rendimiento. Desarrollo de software, web y apps a la medida.",
   openGraph: {
-    title: 'Naxus | Agencia de Desarrollo Tecnológico',
+    title: 'Naxus | Ingeniería y Arquitectura de Software',
     description: 'Materializamos cualquier idea en ecosistemas digitales de alto rendimiento. Desarrollamos software para escalar tu negocio.',
     url: 'https://naxus.com.mx',
     siteName: 'Naxus',
@@ -44,7 +48,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Naxus | Desarrollo y Arquitectura de Software',
-    description: 'Agencia de desarrollo de software y aplicaciones web escalables.',
+    description: 'Ingeniería de software, sistemas a la medida y plataformas web escalables.',
   },
 };
 

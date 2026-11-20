@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
-@theme {
-  --font-sans: var(--font-inter);
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-display: var(--font-space-grotesk), var(--font-geist-sans), sans-serif;
   --color-naxus-bg: #11131a;
   --color-naxus-sage: #d4d8c5;
 }
@@ -11,11 +13,15 @@
   --foreground: #ffffff;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  overflow-x: clip;
 }
 
 /* Hexagon Grid Animation (Matches the Naxus Logo) */
@@ -71,3 +77,23 @@ body {
 .tech-border::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
 .tech-border:hover::before { width: 100%; height: 100%; opacity: 0.2; }
 .tech-border:hover::after { width: 100%; height: 100%; opacity: 0.2; }
+
+@keyframes moveDots {
+  0% { background-position: 0 0; }
+  100% { background-position: 32px 32px; }
+}
+
+.animated-dots {
+  background-image: radial-gradient(rgba(212, 216, 197, 0.15) 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
+  animation: moveDots 4s linear infinite;
+}
+
+.spotlight-glow {
+  background: radial-gradient(
+    420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(52, 211, 153, 0.12),
+    rgba(34, 211, 238, 0.05) 40%,
+    transparent 70%
+  );
+}
