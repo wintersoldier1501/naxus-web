@@ -146,7 +146,7 @@ export function ContactModal({
               <X className="w-4 h-4" />
             </button>
 
-            <div className="mb-6 pr-8">
+            <div className="relative z-10 mb-6 pr-8">
               <div className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-widest mb-2">
                 <Terminal className="w-3.5 h-3.5" />
                 <span>// INICIAR_PROYECTO</span>

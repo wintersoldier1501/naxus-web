@@ -1296,7 +1296,7 @@ export default function Home() {
               </div>
 
               {/* Modal Body */}
-              <div className="p-6 sm:p-10">
+              <div className="relative z-10 p-6 sm:p-10">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                   {/* Left Column (Overview & Architecture) */}
                   <div className="md:col-span-2 space-y-8">
